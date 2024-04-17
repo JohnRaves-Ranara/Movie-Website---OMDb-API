@@ -6,6 +6,6 @@ type MovieCardProps = {
 
 export default function MovieCard({poster}: MovieCardProps) {
     return (
-        <img src={poster}/>
+        <img src={poster} className=""/>
     )
 }
