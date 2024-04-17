@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react"
 import MovieCard from "./MovieCard"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import Header from "./Header"
 import Movies from "./Movies"
+import Search from "./Search"
 
 
 export type Movie = {
@@ -21,7 +21,7 @@ export default function Dashboard() {
     
     return (
         <QueryClientProvider client={queryClient}>
-            <Header></Header>
+            <Search></Search>
             <Movies></Movies>
         </QueryClientProvider>
     )
