@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MovieCard from "./MovieCard";
 import { Dispatch, SetStateAction } from "react";
+import { useFetchMovies } from "../api/omdb_api";
 
 type MoviesProps = {
   search: string;
@@ -19,22 +20,7 @@ type Movie = {
 
 export default function Movies({ search }: MoviesProps) {
   //fetch data
-  const {
-    data: movies,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<Movie[], Error>({
-    staleTime: 300000,
-    queryKey: ["movies", search],
-    queryFn: async () => {
-      console.log('fetching')
-      const { data } = await axios.get(
-        `http://www.omdbapi.com/?apikey=8e46c852&s=${search}`
-      );
-      return data.Search;
-    },
-  });
+  const {data: movies, isLoading, isError, error} = useFetchMovies(search)
 
   if (isLoading)
     return (
