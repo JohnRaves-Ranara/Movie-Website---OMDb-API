@@ -3,16 +3,21 @@ import image from "/public/sample_poster.jpg";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MovieCard from "./MovieCard";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Movies() {
-  type Movie = {
-    Poster: string;
-    Title: string;
-    Type: string;
-    Year: string;
-    imdbID: string;
-  };
+type MoviesProps = {
+  search: string;
+};
 
+type Movie = {
+  Poster: string;
+  Title: string;
+  Type: string;
+  Year: string;
+  imdbID: string;
+};
+
+export default function Movies({ search }: MoviesProps) {
   //fetch data
   const {
     data: movies,
@@ -20,12 +25,13 @@ export default function Movies() {
     isError,
     error,
   } = useQuery<Movie[], Error>({
-    queryKey: ["movies"],
+    staleTime: 300000,
+    queryKey: ["movies", search],
     queryFn: async () => {
+      console.log('fetching')
       const { data } = await axios.get(
-        "http://www.omdbapi.com/?apikey=8e46c852&s=batman"
+        `http://www.omdbapi.com/?apikey=8e46c852&s=${search}`
       );
-      console.log(data.Search);
       return data.Search;
     },
   });
@@ -44,16 +50,15 @@ export default function Movies() {
       </div>
     );
 
-  {
-    /* <Image src={image} alt='' width={200} className='rounded-lg'></Image> */
-  }
-
   return (
     <div className="min-h-screen bg-gray-950 place-items-center grid grid-cols-4 gap-16 text-white px-24 pt-[22vh] pb-24">
       {movies &&
         movies.map((movie) => {
           return (
-            <div className="flex flex-col gap-4 items-center">
+            <div
+              key={movie.imdbID}
+              className="flex flex-col gap-4 items-center"
+            >
               <MovieCard poster={movie.Poster} />
               <div className="text-center">
                 <p>{movie.Title}</p>
