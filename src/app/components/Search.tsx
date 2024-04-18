@@ -7,13 +7,13 @@ type SearchProps = {
 
 export default function Search({ search, setSearch }: SearchProps) {
   return (
-    <div className="bg-gray-900 w-screen px-24 py-5 fixed">
+    <div className="w-screen py-5 fixed px-24">
       <input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Enter movie title here..."
         type="text"
-        className="bg-gray-800 w-full px-3 py-4 text-lg rounded-lg text-white"
+        className="bg-gray-800/80 w-full px-5 py-4 text-lg rounded-lg text-white"
       />
     </div>
   );
