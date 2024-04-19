@@ -7,7 +7,7 @@ type SearchProps = {
 
 export default function Search({ search, setSearch }: SearchProps) {
   return (
-    <div className="w-screen py-5 fixed px-24">
+    <div className="w-screen py-8 fixed px-24">
       <input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
