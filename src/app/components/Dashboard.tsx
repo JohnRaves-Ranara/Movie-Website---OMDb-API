@@ -23,16 +23,29 @@ export type Movie = {
   vote_count: number;
 };
 
-const queryClient = new QueryClient();
+export type MoviesRequest = {
+  page : number
+  results : Movie[]
+  total_pages : number
+  total_results : number
+}
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default function Dashboard() {
-  const [search, setSearch] = useState("");
-  const debouncedSearch = useDebounce(search, 500);
+  // const [search, setSearch] = useState("");
+  // const debouncedSearch = useDebounce(search, 500);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Search search={search} setSearch={setSearch}></Search>
-      <Movies search={debouncedSearch}></Movies>
+      <Search></Search>
+      <Movies></Movies>
     </QueryClientProvider>
   );
 }
