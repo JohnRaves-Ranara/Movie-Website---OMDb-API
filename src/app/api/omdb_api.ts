@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Movie, MoviesRequest } from "../components/Dashboard";
+import { Movie, MoviesRequest } from "../types";
 import axios from "axios";
 
 export function useFetchMovies(search: string) {

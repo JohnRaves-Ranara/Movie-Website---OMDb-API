@@ -1,5 +1,5 @@
 import { IconFilterFilled } from "@tabler/icons-react";
-import { Movie } from "./Dashboard";
+import { Movie } from "../types";
 import MovieCard from "./MovieCard";
 import MoviePoster from "./MoviePoster";
 
