@@ -2,19 +2,22 @@ import { IconFilterFilled } from "@tabler/icons-react";
 import { Movie } from "../types";
 import MovieCard from "./MovieCard";
 import MoviePoster from "./MoviePoster";
+import UsePagination from "./UsePagination";
 
 type MovieSearchResultsProps = {
   movies: Movie[];
   inputQuery: string;
+  totalPages : number
 };
 
 export default function MovieSearchResults({
   movies,
   inputQuery,
+  totalPages
 }: MovieSearchResultsProps) {
   return (
     <div className="min-h-screen bg-gray-950 pt-[18vh] px-24 pb-24 ">
-      <div className="flex gap-8 items-center mb-5">
+      <div className="flex gap-8 items-center mb-8">
         <h1 className="text-white text-[2.5vw] overflow-hidden before:block before:h-8 before:w-1 before:bg-purple-500 flex items-center gap-4">
           Showing results for "{inputQuery}"
         </h1>
@@ -32,6 +35,7 @@ export default function MovieSearchResults({
           );
         })}
       </div>
+      <UsePagination totalPages={totalPages}></UsePagination>
     </div>
   );
 }
