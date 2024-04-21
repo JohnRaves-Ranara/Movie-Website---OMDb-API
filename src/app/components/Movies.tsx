@@ -29,7 +29,7 @@ export default function Movies() {
       <>
         {movies && movies.length !== 0 ? (
           searchQuery ? (
-            <MovieSearchResults movies={movies} inputQuery={searchQuery} />
+            <MovieSearchResults movies={movies} inputQuery={searchQuery} totalPages={moviesRequest!.total_pages}/>
           ) : (
             <DiscoverMovies movies={movies} />
           )

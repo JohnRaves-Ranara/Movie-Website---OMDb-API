@@ -21,9 +21,10 @@ export default function FetchMoviesContextProvider({children} : FetchMoviesConte
 
     const searchParams = useSearchParams()
     const searchQuery = searchParams.get("query")
+    const pageNum = searchParams.get("page")
 
     //fetch data
-    const fetchMovies =  useFetchMovies(searchQuery ?? '');
+    const fetchMovies =  useFetchMovies(searchQuery!, Number(pageNum));
 
     return (
         <FetchMoviesContext.Provider value={{
