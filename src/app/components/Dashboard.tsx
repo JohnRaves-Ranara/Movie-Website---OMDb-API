@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Movies from "./Movies";
 import Search from "./Search";
 import { useDebounce } from "../custom-hooks/useDebounce";
+import FetchMoviesContextProvider from "../contexts/FetchMoviesContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,8 +19,10 @@ export default function Dashboard() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Search></Search>
-      <Movies></Movies>
+      <FetchMoviesContextProvider>
+        <Search></Search>
+        <Movies></Movies>
+      </FetchMoviesContextProvider>
     </QueryClientProvider>
   );
 }
