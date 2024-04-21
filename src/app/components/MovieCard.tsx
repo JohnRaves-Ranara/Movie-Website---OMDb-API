@@ -1,5 +1,5 @@
-import { Movie } from "./Dashboard";
 import MoviePoster from "./MoviePoster";
+import { Movie } from "../types";
 
 type MovieCardProps = {
     movie : Movie

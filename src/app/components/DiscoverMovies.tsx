@@ -1,5 +1,5 @@
-import { Movie } from "./Dashboard";
 import MovieCard from "./MovieCard";
+import { Movie } from "../types";
 
 type DiscoverMoviesProps = {
   movies: Movie[];
