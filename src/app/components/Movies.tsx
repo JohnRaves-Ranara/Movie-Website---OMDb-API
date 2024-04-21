@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Dispatch, SetStateAction } from "react";
 import { useFetchMovies } from "../api/omdb_api";
 import DiscoverMovies from "./DiscoverMovies";
@@ -7,25 +7,17 @@ import LoadingComponent from "./LoadingComponent";
 import MovieNotFound from "./MovieNotFound";
 import MovieSearchResults from "./MovieSearchResults";
 import { useSearchParams } from "next/navigation";
+import { useFetchMoviesContext } from "../contexts/FetchMoviesContext";
 
 export default function Movies() {
-
-  //get url parameters
-  const searchParams = useSearchParams()
-  const query = searchParams.get("query")
-  console.log(query)
-  console.log(query ? "QUERY EXISTS" : "QUERY DOESNT EXIST")
-
-  //fetch data
+  const fetchMoviesContext = useFetchMoviesContext();
   const {
     data: moviesRequest,
     isLoading,
     isError,
     error,
-  } =  useFetchMovies(query ?? '');
-  
-  
-  console.log(moviesRequest)
+  } = fetchMoviesContext.fetchMovies;
+  const searchQuery = fetchMoviesContext.searchQuery;
 
   if (isLoading) {
     return <LoadingComponent />;
@@ -36,8 +28,8 @@ export default function Movies() {
     return (
       <>
         {movies && movies.length !== 0 ? (
-          query ? (
-            <MovieSearchResults movies={movies} inputQuery={query} />
+          searchQuery ? (
+            <MovieSearchResults movies={movies} inputQuery={searchQuery} />
           ) : (
             <DiscoverMovies movies={movies} />
           )
