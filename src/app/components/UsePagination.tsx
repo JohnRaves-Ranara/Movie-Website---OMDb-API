@@ -1,29 +1,30 @@
 import * as React from "react";
-import usePagination, { UsePaginationResult } from "@mui/material/usePagination";
+import usePagination, {
+  UsePaginationResult,
+} from "@mui/material/usePagination";
 import { styled } from "@mui/material/styles";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-
 type UsePaginationProps = {
-    totalPages : number
-}
+  totalPages: number;
+};
 
-export default function UsePagination({totalPages} : UsePaginationProps) {
+export default function UsePagination({ totalPages }: UsePaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const currentPage = Number(searchParams.get("page")) || 1;
   const router = useRouter();
-  
-  function handlePageChange (pageNumber: number | string) {
+
+  function handlePageChange(pageNumber: number | string) {
     const params = new URLSearchParams(searchParams);
-    params.set('page', pageNumber.toString());
+    params.set("page", pageNumber.toString());
     router.push(`${pathname}?${params.toString()}`);
-  };
+  }
 
   const { items } = usePagination({
-    onChange: (e, page)=> {
-        handlePageChange(page)
+    onChange: (e, page) => {
+      handlePageChange(page);
     },
     count: totalPages,
     page: currentPage,
@@ -32,7 +33,7 @@ export default function UsePagination({totalPages} : UsePaginationProps) {
   return (
     <nav className="mt-24">
       <ul className="space-x-4 text-white flex justify-center items-center">
-        {items.map(({ page, type, selected, ...item}, index) => {
+        {items.map(({ page, type, selected, ...item }, index) => {
           let children = null;
 
           if (type === "start-ellipsis" || type === "end-ellipsis") {
@@ -41,7 +42,7 @@ export default function UsePagination({totalPages} : UsePaginationProps) {
             children = (
               <button
                 className={`size-[3em] border-white border-2 border-solid  rounded-[100%] hover:bg-white hover:text-black transition-all ${
-                  selected && "bg-purple-500 border-purple-500"
+                  selected && "bg-purple-500 border-none"
                 }`}
                 type="button"
                 {...item}
@@ -50,19 +51,23 @@ export default function UsePagination({totalPages} : UsePaginationProps) {
               </button>
             );
           } else {
-            children = (
-              <button
-                className={`size-[3em] border-white border-2 border-solid  rounded-[100%] hover:bg-white hover:text-black transition-all flex justify-center items-center`}
-                type="button"
-                {...item}
-              >
-                {type === "previous" ? (
-                  <IconChevronLeft></IconChevronLeft>
-                ) : (
-                  <IconChevronRight></IconChevronRight>
-                )}
-              </button>
-            );
+            if (type === "previous" && currentPage === 1) {children = null;}
+            else if (type === "next" && currentPage === totalPages) {children = null;}
+            else{
+              children = (
+                <button
+                  className={`size-[3em] border-white border-2 border-solid  rounded-[100%] hover:bg-white hover:text-black transition-all flex justify-center items-center`}
+                  type="button"
+                  {...item}
+                >
+                  {type === "previous" ? (
+                    <IconChevronLeft></IconChevronLeft>
+                  ) : (
+                    <IconChevronRight></IconChevronRight>
+                  )}
+                </button>
+              );
+            }
           }
 
           return <li key={index}>{children}</li>;
