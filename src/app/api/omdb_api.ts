@@ -1,9 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import { Movie, MoviesRequest } from "../types";
 import axios from "axios";
+import { use } from "react";
 
-export function useFetchMovies(search: string, pageNum: number) {
-  console.log(`USE FETCH MOVIES SEARCH: ${search}`);
+export function useFetchMovies(
+  search: string,
+  pageNum: number
+): UseQueryResult<MoviesRequest, Error> {
+  console.log(`USE FETCH MOVIES SEARCH: ${search} ${pageNum}`);
   const query = useQuery<MoviesRequest, Error>({
     staleTime: 300000,
     queryKey: ["movies", search, pageNum],
@@ -15,12 +19,28 @@ export function useFetchMovies(search: string, pageNum: number) {
         );
         return searchResultsData;
       } else {
-        console.error("SEARCH IS NULL/EMPTY")
+        console.error("SEARCH IS NULL/EMPTY");
         const { data: discoverMoviesData } = await axios.get(
           `https://api.themoviedb.org/3/discover/movie?api_key=55de493263803a10375dd886602812d9`
         );
         return discoverMoviesData;
       }
+    },
+  });
+  return query;
+}
+
+export function useFetchMovieDetails(
+  movieID: number
+): UseQueryResult<Movie, Error> {
+  const query = useQuery<Movie, Error>({
+    queryKey: ["movie", movieID],
+    queryFn: async () => {
+      const { data: movieDetails } = await axios.get(
+        `https://api.themoviedb.org/3/movie/${movieID}?api_key=55de493263803a10375dd886602812d9`
+      );
+      console.log(`MOVIE DETAILS ${movieDetails}`)
+      return movieDetails;
     },
   });
   return query;

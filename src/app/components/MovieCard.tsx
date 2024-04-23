@@ -1,5 +1,6 @@
 import MoviePoster from "./MoviePoster";
 import { Movie } from "../types";
+import Link from "next/link";
 
 type MovieCardProps = {
     movie : Movie
@@ -8,11 +9,13 @@ type MovieCardProps = {
 export default function MovieCard({movie} : MovieCardProps) {
     return (
         <>
-            <MoviePoster poster={movie.poster_path} vote_avg={movie.vote_average}/>
-            <div className="text-center">
-                <p className="line-clamp-2">{movie.title}</p>
-                <p>{movie.release_date.split("-")[0]}</p>
-            </div>
+            <Link href={`/movie-details/${movie.id}`}>
+                <MoviePoster poster={movie.poster_path} vote_avg={movie.vote_average}/>
+                <div className="text-center mt-5">
+                    <p className="line-clamp-2">{movie.title}</p>
+                    <p>{movie.release_date.split("-")[0]}</p>
+                </div>
+            </Link>
         </>
     )
 }
