@@ -1,18 +1,15 @@
-import { useFetchMovieDetails } from "@/app/api/omdb_api";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import MovieDetails from "./components/MovieDetails";
+import Providers from "./providers";
 
-const queryClient = new QueryClient()
-
-export default function MovieDetails({
+export default async function Home({
   params,
 }: {
   params: { movieID: number };
 }) {
 
-
-    return (
-        <div></div>
-    )
-  
-  
+  return (
+    <Providers>
+        <MovieDetails movieID={params.movieID}></MovieDetails>
+    </Providers>
+  );
 }
