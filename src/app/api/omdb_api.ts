@@ -1,5 +1,5 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
-import { Movie, MoviesRequest } from "../types";
+import { Movie, MoviesRequest } from "../utils/types";
 import axios from "axios";
 import { use } from "react";
 
@@ -34,6 +34,7 @@ export function useFetchMovieDetails(
   movieID: number
 ): UseQueryResult<Movie, Error> {
   const query = useQuery<Movie, Error>({
+    staleTime: 60000 * 100000,
     queryKey: ["movie", movieID],
     queryFn: async () => {
       const { data: movieDetails } = await axios.get(
