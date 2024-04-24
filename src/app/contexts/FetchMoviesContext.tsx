@@ -1,7 +1,7 @@
 "use client"
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { createContext, useContext } from "react";
-import { MoviesRequest } from "../types";
+import { MoviesRequest } from "../utils/types";
 import { useFetchMovies } from "../api/omdb_api";
 import { UseQueryResult } from "@tanstack/react-query";
 

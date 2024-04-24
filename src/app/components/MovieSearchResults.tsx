@@ -1,7 +1,6 @@
 import { IconFilterFilled } from "@tabler/icons-react";
-import { Movie } from "../types";
+import { Movie } from "../utils/types";
 import MovieCard from "./MovieCard";
-import MoviePoster from "./MoviePoster";
 import UsePagination from "./UsePagination";
 
 type MovieSearchResultsProps = {
