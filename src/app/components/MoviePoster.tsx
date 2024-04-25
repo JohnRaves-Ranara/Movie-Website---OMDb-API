@@ -50,6 +50,7 @@ export default function MoviePoster({
             src={`https://image.tmdb.org/t/p/original${poster}`}
             className="object-cover group-hover:scale-110 transition-transform w-full h-auto"
             alt=""
+            unoptimized = {true}
           ></Image>
         ) : (
           // <img

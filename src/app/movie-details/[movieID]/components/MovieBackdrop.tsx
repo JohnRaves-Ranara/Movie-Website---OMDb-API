@@ -6,10 +6,12 @@ export default function MovieBackdrop({
 }) {
   return (
     <Image
+      quality={1}
       fill={true}
       src={`https://image.tmdb.org/t/p/original${backdrop}`}
       alt=""
       className="size-full blur-sm object-cover"
+      unoptimized = {true}
     ></Image>
 
     // <div style={{
