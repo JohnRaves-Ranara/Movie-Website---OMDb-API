@@ -1,5 +1,5 @@
 import MovieDetails from "./components/MovieDetails";
-import Providers from "./providers";
+import Providers from "../../utils/providers";
 
 export default async function Home({
   params,

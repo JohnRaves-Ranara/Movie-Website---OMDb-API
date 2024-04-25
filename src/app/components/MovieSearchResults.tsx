@@ -7,14 +7,14 @@ type MovieSearchResultsProps = {
   movies: Movie[];
   inputQuery: string;
   totalPages : number
-  genres : Genre[]
+  allGenres : Genre[]
 };
 
 export default function MovieSearchResults({
   movies,
   inputQuery,
   totalPages,
-  genres
+  allGenres
 }: MovieSearchResultsProps) {
   
 
@@ -33,7 +33,7 @@ export default function MovieSearchResults({
         {movies.map((movie) => {
           return (
             <div key={movie.id} className="flex flex-col gap-4">
-              <MovieCard movie={movie} genres={genres} />
+              <MovieCard movie={movie} allGenres={allGenres} />
             </div>
           );
         })}

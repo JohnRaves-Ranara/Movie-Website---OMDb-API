@@ -15,7 +15,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GenresContextProvider>{children}</GenresContextProvider>
+      {children}
     </QueryClientProvider>
   );
 }

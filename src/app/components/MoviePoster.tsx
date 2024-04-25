@@ -5,22 +5,23 @@ import { Genre, Movie } from "../utils/types";
 type MoviePosterProps = {
   movie: Movie;
   isMovieDetailsPage: boolean;
-  genres?: Genre[];
+  allGenres?: Genre[];
 };
 
 export default function MoviePoster({
   movie,
   isMovieDetailsPage,
-  genres,
+  allGenres,
 }: MoviePosterProps) {
   const poster = movie.poster_path;
   const vote_avg = movie.vote_average;
-  let genresOfMovie;
+  let genreNamesOfMovie;
+  let genreIdsOfMovie = movie.genre_ids
   
-  if (genres) {
-    genresOfMovie = movie.genre_ids.map((genreID) => {
-      let foundGenreById = genres.find((genre) => genre.id === genreID);
-      return foundGenreById!.name
+  if (allGenres) {
+    genreNamesOfMovie = genreIdsOfMovie.map((genreId) => {
+      let foundGenre = allGenres.find((genre) => genre.id === genreId);
+      return foundGenre!.name
     });
   }
   return (
@@ -33,9 +34,9 @@ export default function MoviePoster({
               <span className="text-gray-300">/10</span>
             </p>
             <div className="text-gray-300 flex flex-wrap justify-center w-full items-center gap-4 text-sm pl-6 pr-10">
-              {genres &&
-                genresOfMovie?.map((genre) => {
-                  return <em className="pr-[2px]">{genre}</em>;
+              {allGenres &&
+                genreNamesOfMovie?.map((genreName) => {
+                  return <em className="pr-[2px]">{genreName}</em>;
                 })}
             </div>
           </div>

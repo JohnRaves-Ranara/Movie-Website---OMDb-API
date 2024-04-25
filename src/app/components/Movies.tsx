@@ -49,13 +49,13 @@ export default function Movies() {
         {movies && movies.length !== 0 ? (
           searchQuery ? (
             <MovieSearchResults
-              genres={allGenres}
+              allGenres={allGenres}
               movies={movies}
               inputQuery={searchQuery}
               totalPages={moviesRequest!.total_pages}
             />
           ) : (
-            <DiscoverMovies movies={movies} genres={allGenres} />
+            <DiscoverMovies movies={movies} allGenres={allGenres} />
           )
         ) : (
           <MovieNotFound />
