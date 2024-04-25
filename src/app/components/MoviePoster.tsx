@@ -27,6 +27,7 @@ export default function MoviePoster({
         )}
         {poster ? (
           <Image
+            quality={50}
             // height={400}
             // width={300}
             fill={true}

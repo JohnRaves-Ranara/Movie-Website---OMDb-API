@@ -7,17 +7,18 @@ import LoadingComponent from "./LoadingComponent";
 import MovieNotFound from "./MovieNotFound";
 import MovieSearchResults from "./MovieSearchResults";
 import { useSearchParams } from "next/navigation";
-import { useFetchMoviesContext } from "../contexts/FetchMoviesContext";
 
 export default function Movies() {
-  const fetchMoviesContext = useFetchMoviesContext();
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("query");
+  const pageNum = searchParams.get("page");
+
   const {
     data: moviesRequest,
     isLoading,
     isError,
     error,
-  } = fetchMoviesContext.fetchMovies;
-  const searchQuery = fetchMoviesContext.searchQuery;
+  } = useFetchMovies(searchQuery!, Number(pageNum));
 
   if (isLoading) {
     return <LoadingComponent />;
@@ -29,7 +30,11 @@ export default function Movies() {
       <>
         {movies && movies.length !== 0 ? (
           searchQuery ? (
-            <MovieSearchResults movies={movies} inputQuery={searchQuery} totalPages={moviesRequest!.total_pages}/>
+            <MovieSearchResults
+              movies={movies}
+              inputQuery={searchQuery}
+              totalPages={moviesRequest!.total_pages}
+            />
           ) : (
             <DiscoverMovies movies={movies} />
           )
