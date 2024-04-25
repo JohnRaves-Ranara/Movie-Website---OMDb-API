@@ -19,9 +19,9 @@ export default function Info({movie}:InfoProps){
               <div>
                 {movie.genres.map((genre, index) => {
                   if (index === movie.genres.length - 1) {
-                    return <span className="pr-1"><em>{genre.name}</em></span>;
+                    return <span key={index} className="pr-1"><em>{genre.name}</em></span>;
                   } else {
-                    return <span><em>{genre.name}, </em></span>;
+                    return <span key={index}><em>{genre.name}, </em></span>;
                   }
                 })}
               </div>

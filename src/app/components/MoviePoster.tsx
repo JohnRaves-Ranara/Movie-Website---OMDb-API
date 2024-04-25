@@ -35,8 +35,8 @@ export default function MoviePoster({
             </p>
             <div className="text-gray-300 flex flex-wrap justify-center w-full items-center gap-4 text-sm pl-6 pr-10">
               {allGenres &&
-                genreNamesOfMovie?.map((genreName) => {
-                  return <em className="pr-[2px]">{genreName}</em>;
+                genreNamesOfMovie?.map((genreName, index) => {
+                  return <em key={index} className="pr-[2px]">{genreName}</em>;
                 })}
             </div>
           </div>
