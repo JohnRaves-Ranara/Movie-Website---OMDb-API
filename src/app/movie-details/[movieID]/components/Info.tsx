@@ -1,7 +1,7 @@
-import { Movie } from "@/app/utils/types";
+import {MovieDetails } from "@/app/utils/types";
 
 type InfoProps = {
-    movie: Movie
+    movie: MovieDetails
 }
 
 export default function Info({movie}:InfoProps){
