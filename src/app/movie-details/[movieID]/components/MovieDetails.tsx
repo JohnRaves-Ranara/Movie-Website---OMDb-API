@@ -1,9 +1,6 @@
 "use client";
 import { useFetchMovieDetails } from "@/app/api/omdb_api";
-import Image from "next/image";
 import MovieBackdrop from "./MovieBackdrop";
-import { IconStarFilled } from "@tabler/icons-react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import MoviePoster from "@/app/components/MoviePoster";
 import Info from "./Info";
@@ -40,8 +37,8 @@ export default function MovieDetails({ movieID }: MovieDetailsProps) {
   if (movie) {
     return (
       <div className="h-screen bg-gray-950 relative">
-        <div className="absolute size-full text-black bg-black/50 flex justify-center items-center z-10 gap-12">
-          <MoviePoster poster={movie.poster_path} vote_avg={movie.vote_average} isMovieDetailsPage={true}></MoviePoster>
+        <div className="absolute size-full bg-black/50 flex justify-center items-center z-10 gap-12">
+          <MoviePoster movie={movie} isMovieDetailsPage={true}></MoviePoster>
           <Info movie={movie}></Info>
         </div>
         <MovieBackdrop backdrop={movie.backdrop_path}></MovieBackdrop>

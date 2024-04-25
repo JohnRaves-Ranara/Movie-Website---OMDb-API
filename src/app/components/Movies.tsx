@@ -1,6 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction } from "react";
-import { useFetchMovies } from "../api/omdb_api";
+import { fetchMoviesAndAllGenres } from "../api/omdb_api";
 import DiscoverMovies from "./DiscoverMovies";
 import ErrorComponent from "./ErrorComponent";
 import LoadingComponent from "./LoadingComponent";
@@ -13,17 +12,36 @@ export default function Movies() {
   const searchQuery = searchParams.get("query");
   const pageNum = searchParams.get("page");
 
+  // const {
+  //   data: moviesRequest,
+  //   isLoading,
+  //   isError,
+  //   error,
+  // } = useFetchMovies(searchQuery!, Number(pageNum));
+
+  const queries = fetchMoviesAndAllGenres(searchQuery!, Number(pageNum));
+
   const {
     data: moviesRequest,
-    isLoading,
-    isError,
-    error,
-  } = useFetchMovies(searchQuery!, Number(pageNum));
+    isLoading: moviesReqLoading,
+    isError: moviesReqIsError,
+    error: moviesReqError,
+  } = queries[0];
+  const {
+    data: allGenres,
+    isLoading: allGenresLoading,
+    isError: allGenresIsError,
+    error: allGenresError,
+  } = queries[1];
 
-  if (isLoading) {
+  if (moviesReqLoading || allGenresLoading) {
     return <LoadingComponent />;
-  } else if (isError) {
-    return <ErrorComponent error={error} />;
+  } else if (moviesReqIsError || allGenresIsError) {
+    return (
+      <ErrorComponent
+        error={`Genres fetch error: ${allGenresError} Movies Req error: ${moviesReqError}`}
+      />
+    );
   } else {
     const movies = moviesRequest!.results;
     return (
@@ -31,12 +49,13 @@ export default function Movies() {
         {movies && movies.length !== 0 ? (
           searchQuery ? (
             <MovieSearchResults
+              genres={allGenres}
               movies={movies}
               inputQuery={searchQuery}
               totalPages={moviesRequest!.total_pages}
             />
           ) : (
-            <DiscoverMovies movies={movies} />
+            <DiscoverMovies movies={movies} genres={allGenres} />
           )
         ) : (
           <MovieNotFound />

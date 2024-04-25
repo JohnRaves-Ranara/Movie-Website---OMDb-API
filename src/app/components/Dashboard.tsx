@@ -15,8 +15,8 @@ export default function Dashboard() {
 
   return (
     <QueryClientProvider client={queryClient}>
-        <Search></Search>
-        <Movies></Movies>
+          <Search></Search>
+          <Movies></Movies>
     </QueryClientProvider>
   );
 }

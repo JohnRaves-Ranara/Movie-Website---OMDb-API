@@ -1,5 +1,5 @@
 import { IconFilterFilled } from "@tabler/icons-react";
-import { Movie } from "../utils/types";
+import { Genre, Movie } from "../utils/types";
 import MovieCard from "./MovieCard";
 import UsePagination from "./UsePagination";
 
@@ -7,13 +7,17 @@ type MovieSearchResultsProps = {
   movies: Movie[];
   inputQuery: string;
   totalPages : number
+  genres : Genre[]
 };
 
 export default function MovieSearchResults({
   movies,
   inputQuery,
-  totalPages
+  totalPages,
+  genres
 }: MovieSearchResultsProps) {
+  
+
   return (
     <div className="min-h-screen bg-gray-950 pt-[18vh] px-24 pb-24 ">
       <div className="flex gap-8 items-center mb-8">
@@ -29,7 +33,7 @@ export default function MovieSearchResults({
         {movies.map((movie) => {
           return (
             <div key={movie.id} className="flex flex-col gap-4">
-              <MovieCard movie={movie} />
+              <MovieCard movie={movie} genres={genres} />
             </div>
           );
         })}
