@@ -18,7 +18,7 @@ export default function MovieCard({ movie, allGenres}: MovieCardProps) {
         />
         <div className="text-center mt-5">
           <p className="line-clamp-2">{movie.title}</p>
-          <p>{movie.release_date.split("-")[0]}</p>
+          <p>{movie.release_date?.split("-")[0]}</p>
         </div>
       </Link>
     </>

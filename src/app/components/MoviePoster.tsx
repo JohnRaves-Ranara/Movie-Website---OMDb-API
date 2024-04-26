@@ -17,9 +17,9 @@ export default function MoviePoster({
   const vote_avg = movie.vote_average;
   let genreNamesOfMovie;
   let genreIdsOfMovie = movie.genre_ids
-  
+
   if (allGenres) {
-    genreNamesOfMovie = genreIdsOfMovie.map((genreId) => {
+    genreNamesOfMovie = genreIdsOfMovie?.map((genreId) => {
       let foundGenre = allGenres.find((genre) => genre.id === genreId);
       return foundGenre!.name
     });
@@ -30,13 +30,17 @@ export default function MoviePoster({
         {!isMovieDetailsPage && (
           <div className="bg-black/50 opacity-0 absolute z-10 text-black group-hover:opacity-100 transition-opacity size-full flex flex-col justify-center gap-8 items-center">
             <p className="text-2xl font-bold">
-              <span className="text-purple-500">{vote_avg.toFixed(1)}</span>
+              <span className="text-purple-500">{vote_avg?.toFixed(1)}</span>
               <span className="text-gray-300">/10</span>
             </p>
             <div className="text-gray-300 flex flex-wrap justify-center w-full items-center gap-4 text-sm px-6">
               {allGenres &&
                 genreNamesOfMovie?.map((genreName, index) => {
-                  return <em key={index} className="pr-[2px]">{genreName}</em>;
+                  return (
+                    <em key={index} className="pr-[2px]">
+                      {genreName}
+                    </em>
+                  );
                 })}
             </div>
           </div>
