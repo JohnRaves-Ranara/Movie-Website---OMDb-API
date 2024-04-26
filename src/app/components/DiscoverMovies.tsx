@@ -1,6 +1,7 @@
 import MovieCard from "./MovieCard";
 import { Genre, Movie } from "../utils/types";
 import { IconFilterFilled } from "@tabler/icons-react";
+import FilterDialog from "./FilterDialog";
 
 type DiscoverMoviesProps = {
   movies: Movie[];
@@ -14,10 +15,7 @@ export default function DiscoverMovies({ movies, allGenres }: DiscoverMoviesProp
         <h1 className="text-white text-[2.5vw] overflow-hidden before:block before:h-8 before:w-[0.45rem] before:bg-purple-500 flex items-center gap-4">
           Discover Movies"
         </h1>
-        <div className="px-6 py-2 bg-purple-500 rounded-full flex items-center gap-3 hover:bg-purple-800 group">
-            <p className="text-white">Filter</p>
-            <IconFilterFilled color="white" size={25}/>
-        </div>
+      <FilterDialog allGenres={allGenres}></FilterDialog>
       </div>
       
       <div className="grid grid-cols-4 gap-16 text-white">

@@ -10,7 +10,7 @@ type MovieCardProps = {
 export default function MovieCard({ movie, allGenres}: MovieCardProps) {
   return (
     <>
-      <Link href={`/movie-details/${movie.id}`}>
+      <Link href={`/movie-details/${movie.id}`} className="w-[300px]">
         <MoviePoster
           movie={movie}
           isMovieDetailsPage={false}
