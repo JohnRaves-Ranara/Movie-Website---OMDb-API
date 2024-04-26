@@ -1,32 +1,33 @@
-import { Dispatch, SetStateAction, useContext, useState } from "react"
-import { createContext } from "react"
-import { Genre } from "../utils/types"
+//TBD
+// import { Dispatch, SetStateAction, useContext, useState } from "react"
+// import { createContext } from "react"
+// import { Genre } from "../utils/types"
+// import { useFetchAllGenres } from "../api/omdb_api"
+// import { UseQueryResult } from "@tanstack/react-query"
 
-export type GenresContext = {
-    allGenresState: Genre[]
-    setAllGenresState: Dispatch<SetStateAction<Genre[]>>
-}
+// export type GenresContext = {
+//     allGenres: UseQueryResult<Genre[], Error>
+// }
 
-const GenresContext = createContext<GenresContext | null>(null)
+// const GenresContext = createContext<GenresContext | null>(null)
 
-export default function GenresContextProvider({children} : {children:React.ReactNode}){
+// export default function GenresContextProvider({children} : {children:React.ReactNode}){
 
-    const [allGenresState, setAllGenresState] = useState<Genre[]>([])
+//     const allGenres = useFetchAllGenres()
 
-    return (
-        <GenresContext.Provider value={{
-            allGenresState,
-            setAllGenresState
-        }}>
-            {children}
-        </GenresContext.Provider>
-    )
-}
+//     return (
+//         <GenresContext.Provider value={{
+//             allGenres
+//         }}>
+//             {children}
+//         </GenresContext.Provider>
+//     )
+// }
 
-export function useGenresContextProvider(){
-    const context = useContext(GenresContext)
-    if(!context){
-        throw new Error("useGenresContextProvider must be used within a GenresContextProvider")
-    }
-    return context
-}
+// export function useGenresContextProvider(){
+//     const context = useContext(GenresContext)
+//     if(!context){
+//         throw new Error("useGenresContextProvider must be used within a GenresContextProvider")
+//     }
+//     return context
+// }

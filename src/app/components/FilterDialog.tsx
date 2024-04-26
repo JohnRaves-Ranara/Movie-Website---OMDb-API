@@ -9,21 +9,17 @@ import {
 import { IconFilterFilled } from "@tabler/icons-react";
 import { Genre } from "../utils/types";
 import GenreFilter from "./GenreFilter";
+import { useFilterDialogContext } from "../contexts/FilterDialogContext";
 
 type FilterDialogProps = {
     allGenres : Genre[]
 }
 
 export default function FilterDialog({allGenres} : FilterDialogProps ) {
+  const {isOpen, setIsOpen} = useFilterDialogContext()
 
   return (
-    <Dialog>
-      <DialogTrigger>
-        <div className="px-6 py-2 bg-purple-500 rounded-full flex items-center gap-3 hover:bg-purple-800 group">
-          <p className="text-white">Filters</p>
-          <IconFilterFilled color="white" size={25} />
-        </div>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={()=> setIsOpen(!isOpen)}>
       <DialogContent className="bg-gray-950 border-gray-950">
         <DialogHeader>
           <DialogTitle className="text-muted-foreground">Select Filters</DialogTitle>
