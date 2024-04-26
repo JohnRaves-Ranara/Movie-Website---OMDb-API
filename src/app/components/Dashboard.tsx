@@ -3,23 +3,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Movies from "./Movies";
 import Search from "./Search";
 import FilterDialogContextProvider from "../contexts/FilterDialogContext";
-import FilterDialog from "./FilterDialog";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 60 * 1000,
-    },
-  },
-});
+import SelectedFiltersContextProvider from "../contexts/SelectedFiltersContext";
+import Providers from "../utils/providers";
 
 export default function Dashboard() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <FilterDialogContextProvider>
-          <Search></Search>
-          <Movies></Movies>
-      </FilterDialogContextProvider>
-    </QueryClientProvider>
+    <Providers>
+      <Search></Search>
+      <Movies></Movies>
+    </Providers>
   );
 }
