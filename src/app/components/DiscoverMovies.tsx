@@ -1,5 +1,6 @@
 import MovieCard from "./MovieCard";
 import { Genre, Movie } from "../utils/types";
+import { IconFilterFilled } from "@tabler/icons-react";
 
 type DiscoverMoviesProps = {
   movies: Movie[];
@@ -9,9 +10,16 @@ type DiscoverMoviesProps = {
 export default function DiscoverMovies({ movies, allGenres }: DiscoverMoviesProps) {
   return (
     <div className="min-h-screen bg-gray-950 pt-[18vh] px-24 pb-24">
-      <h1 className="text-white text-[2.5vw] overflow-hidden mb-5">
-        Discover Movies
-      </h1>
+      <div className="flex gap-8 items-center mb-8">
+        <h1 className="text-white text-[2.5vw] overflow-hidden before:block before:h-8 before:w-[0.45rem] before:bg-purple-500 flex items-center gap-4">
+          Discover Movies"
+        </h1>
+        <div className="px-6 py-2 bg-purple-500 rounded-full flex items-center gap-3 hover:bg-purple-800 group">
+            <p className="text-white">Filter</p>
+            <IconFilterFilled color="white" size={25}/>
+        </div>
+      </div>
+      
       <div className="grid grid-cols-4 gap-16 text-white">
         {movies.map((movie) => {
           return (
