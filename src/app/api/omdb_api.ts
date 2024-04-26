@@ -8,7 +8,7 @@ export function useFetchMovieDetails(
   movieID: number
 ): UseQueryResult<MovieDetails, Error> {
   const query = useQuery<MovieDetails, Error>({
-    staleTime: 60000 * 100000,
+    staleTime: Infinity,
     queryKey: ["movie", movieID],
     queryFn: async () => {
       const { data: movieDetails } = await axios.get(
@@ -27,7 +27,7 @@ export function useFetchMovies(
 ): UseQueryResult<MoviesRequest, Error> {
   console.log(`USE FETCH MOVIES SEARCH: ${search} ${pageNum}`);
   const query = useQuery<MoviesRequest, Error>({
-    staleTime: 300000,
+    staleTime: Infinity,
     queryKey: ["movies", search, pageNum],
     queryFn: async () => {
       if (search && pageNum) {
@@ -50,6 +50,7 @@ export function useFetchMovies(
 
 export function useFetchAllGenres() {
   const query = useQuery<Genre[], Error>({
+    staleTime: Infinity,
     queryKey: ["genres"],
     queryFn: async () => {
       const { data: genres } = await axios.get(
