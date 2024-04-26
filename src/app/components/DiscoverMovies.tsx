@@ -29,11 +29,11 @@ export default function DiscoverMovies({
         </button>
       </div>
 
-      <div className="grid grid-cols-4 gap-16 text-white">
+      <div className="grid grid-cols-4 gap-16 text-white place-items-center">
         {movies.map((movie) => {
           return (
-            <div key={movie.id} className="flex flex-col gap-4">
-              <MovieCard movie={movie} allGenres={allGenres} />
+            <div key={movie.id}>
+              <MovieCard movie={movie} allGenres={allGenres}/>
             </div>
           );
         })}

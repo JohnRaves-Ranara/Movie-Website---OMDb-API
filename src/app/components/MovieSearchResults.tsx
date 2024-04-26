@@ -29,7 +29,7 @@ export default function MovieSearchResults({
             <IconFilterFilled color="white" size={25}/>
         </div> */}
       </div>
-      <div className="grid grid-cols-4 gap-16 text-white">
+      <div className="grid grid-cols-4 gap-16 text-white place-items-center">
         {movies.map((movie) => {
           return (
             <div key={movie.id} className="flex flex-col gap-4">
