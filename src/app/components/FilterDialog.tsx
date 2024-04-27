@@ -73,9 +73,6 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
     <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
       <DialogContent className="bg-gray-950 border-gray-950">
         <DialogHeader>
-          <DialogTitle className="text-muted-foreground">Select Filters</DialogTitle>
-          <DialogTitle className="text-white">Select Filters</DialogTitle>
-          <div className="flex flex-wrap justify-center items-center py-8 space-x-4">
           <DialogTitle className="text-white">Select Filters</DialogTitle>
           <div className="flex flex-wrap items-center py-8 gap-2">
             {allGenres.map((genre) => {
