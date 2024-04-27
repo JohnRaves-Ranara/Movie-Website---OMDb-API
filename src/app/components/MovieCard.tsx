@@ -10,13 +10,13 @@ type MovieCardProps = {
 export default function MovieCard({ movie, allGenres}: MovieCardProps) {
   return (
     <>
-      <Link href={`/movie-details/${movie.id}`} className="w-[300px]">
+      <Link href={`/movie-details/${movie.id}`}>
         <MoviePoster
           movie={movie}
           isMovieDetailsPage={false}
           allGenres={allGenres}
         />
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 space-y-2">
           <p className="line-clamp-2">{movie.title}</p>
           <p>{movie.release_date?.split("-")[0]}</p>
         </div>

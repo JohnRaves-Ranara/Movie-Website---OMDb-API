@@ -32,7 +32,7 @@ export default function MovieSearchResults({
       <div className="grid grid-cols-4 gap-16 text-white">
         {movies.map((movie) => {
           return (
-            <div key={movie.id} className="flex flex-col gap-4">
+            <div key={movie.id} className="overflow-hidden">
               <MovieCard movie={movie} allGenres={allGenres} />
             </div>
           );

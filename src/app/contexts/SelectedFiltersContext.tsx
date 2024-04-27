@@ -14,7 +14,7 @@ type SelectedFiltersContextProps = {
 
 type SelectedFiltersContext = {
     filters: any[]
-    setFilters: Dispatch<React.SetStateAction<string[]>>
+    setFilters: Dispatch<SetStateAction<any[]>>
 }
 
 export const SelectedFiltersContext = createContext<SelectedFiltersContext | null>(null)
