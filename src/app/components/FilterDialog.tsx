@@ -69,6 +69,7 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
     }
   }
 
+  //comment
   return (
     <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
       <DialogContent className="bg-gray-950 border-gray-950">
