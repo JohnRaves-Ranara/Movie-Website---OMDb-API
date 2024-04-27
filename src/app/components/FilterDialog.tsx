@@ -48,6 +48,10 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
     console.log(filters);
   };
 
+
+  //this function returns:
+  //true if [1,2,3]===[1,2,3,4] false if [1,2,3]===[3,2,1]
+  //true if URLParamsFiltersArray is undefined
   function checkArrayInequality(
     URLParamsFiltersArray: number[] | undefined,
     filters: number[]
@@ -69,8 +73,13 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
     <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
       <DialogContent className="bg-gray-950 border-gray-950">
         <DialogHeader>
+<<<<<<< Updated upstream
           <DialogTitle className="text-muted-foreground">Select Filters</DialogTitle>
           <div className="flex flex-wrap justify-center items-center py-8 space-x-4">
+=======
+          <DialogTitle className="text-white">Select Filters</DialogTitle>
+          <div className="flex flex-wrap items-center py-8 gap-2">
+>>>>>>> Stashed changes
             {allGenres.map((genre) => {
               return (
                 <GenreFilter
@@ -87,13 +96,20 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
           <button
             onClick={() => {
               try {
-                if (
-                  filters.length !== 0 &&
-                  checkArrayInequality(URLParamsFiltersArray, filters)
-                ) {
-                  params.set("with_genres", filters.join(","));
+                //1. if filters.length!==0 and arrays are unequal, this means there are filters,
+                //but current filters are different from prev filters, so apply current filters
+                //2.if filters.length!==0 and arrays are equal, this means there are filters,
+                //and prev and current filters are the same, so just close the dialog to avoid unnecessary fetch.
+                //3.if filters.length===0 and arrays are unequal, this means no filters are applied,
+                //but searchparamsfilter with_genres has filters, this means user wants to clear filters.
+                if(filters.length!==0){
+                  if(checkArrayInequality(URLParamsFiltersArray, filters)){
+                    params.set("with_genres", filters.join(","))
+                  }
                 } else {
-                  params.delete("with_genres");
+                  if(checkArrayInequality(URLParamsFiltersArray, filters)){
+                    params.delete("with_genres")
+                  }
                 }
               } catch (e) {
                 throw new Error(`${e}`);
@@ -102,7 +118,7 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
                 setIsOpen(false);
               }
             }}
-            className="bg-purple-500 py-2 px-4 text-white rounded-full"
+            className="bg-purple-500 py-2 px-4 text-white rounded-full w-full"
           >
             Confirm
           </button>
