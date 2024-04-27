@@ -23,7 +23,7 @@ export function useFetchMovieDetails(
 
 export function useFetchMovies(
   search: string,
-  pageNum: number
+  pageNum: string
 ): UseQueryResult<MoviesRequest, Error> {
   console.log(`USE FETCH MOVIES SEARCH: ${search} ${pageNum}`);
   const query = useQuery<MoviesRequest, Error>({

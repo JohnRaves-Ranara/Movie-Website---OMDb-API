@@ -11,13 +11,14 @@ export default function Movies() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query");
   const pageNum = searchParams.get("page")
+  const filters = searchParams.get("with_genres")
 
   const {
     data: moviesRequest,
     isLoading: moviesReqLoading,
     isError: moviesReqIsError,
     error: moviesReqError,
-  } = useFetchMovies(searchQuery!, Number(pageNum));
+  } = useFetchMovies(searchQuery!, pageNum!);
   const {
     data: allGenres,
     isLoading: allGenresLoading,
