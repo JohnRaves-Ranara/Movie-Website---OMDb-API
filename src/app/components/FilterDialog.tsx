@@ -68,6 +68,7 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
       return true;
     }
   }
+  //comment
 
   return (
     <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
