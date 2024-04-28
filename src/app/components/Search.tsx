@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useDebounce } from "../custom-hooks/useDebounce";
 
@@ -8,6 +8,11 @@ export default function Search() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+  const [searchInput, setSearchInput] = useState("")
+
+  useEffect(()=> {
+    setSearchInput(searchParams.get("query") || "")
+  },[searchParams])
 
   const handleSearch = useDebouncedCallback((searchTerm: string) => {
     const params = new URLSearchParams(searchParams);
@@ -23,7 +28,7 @@ export default function Search() {
     } else {
       paramsDeleteAllFromObj(["page", "query"], params);
     }
-    router.replace(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}`);
   }, 500);
 
   function paramsSetAllFromObj(
@@ -48,9 +53,10 @@ export default function Search() {
     <div className="w-screen py-8 fixed px-24 z-20">
       <input
         onChange={(e) => {
+          setSearchInput(e.target.value)
           handleSearch(e.target.value);
         }}
-        defaultValue={searchParams.get("query")?.toString()}
+        value={searchInput}
         placeholder="Enter movie title here..."
         type="text"
         className="bg-gray-800/80 w-full px-5 py-4 text-lg rounded-lg text-white"
