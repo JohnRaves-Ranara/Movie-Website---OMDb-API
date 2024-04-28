@@ -99,12 +99,11 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
                 //and prev and current filters are the same, so just close the dialog to avoid unnecessary fetch.
                 //3.if filters.length===0 and arrays are unequal, this means with_genres in url has filters
                 //but user cleared filters in the dialog, so clear filters by deleting with_genres in urlsearchparams.
-                if(filters.length!==0){
-                  if(checkArrayInequality(URLParamsFiltersArray, filters)){
+                if(checkArrayInequality(URLParamsFiltersArray, filters)){
+                  if(filters.length!==0){
                     params.set("with_genres", filters.join(","))
                   }
-                } else {
-                  if(checkArrayInequality(URLParamsFiltersArray, filters)){
+                  else{
                     params.delete("with_genres")
                   }
                 }
