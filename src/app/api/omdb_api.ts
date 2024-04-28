@@ -3,7 +3,6 @@ import { Genre, Movie, MovieDetails, MoviesRequest } from "../utils/types";
 import axios from "axios";
 import { use } from "react";
 
-
 export function useFetchMovieDetails(
   movieID: number
 ): UseQueryResult<MovieDetails, Error> {
@@ -23,25 +22,30 @@ export function useFetchMovieDetails(
 
 export function useFetchMovies(
   search: string,
-  pageNum: string
+  pageNum: string,
+  filters?: string | null
 ): UseQueryResult<MoviesRequest, Error> {
-  console.log(`USE FETCH MOVIES SEARCH: ${search} ${pageNum}`);
   const query = useQuery<MoviesRequest, Error>({
     staleTime: Infinity,
-    queryKey: ["movies", search, pageNum],
+    queryKey: ["movies", search, pageNum, filters],
     queryFn: async () => {
       if (search && pageNum) {
-        console.log("SEARCH IS NOT NULL");
         const { data: searchResultsData } = await axios.get(
           `https://api.themoviedb.org/3/search/movie?query=${search}&page=${pageNum}&api_key=55de493263803a10375dd886602812d9`
         );
         return searchResultsData;
       } else {
-        console.error("SEARCH IS NULL/EMPTY");
-        const { data: discoverMoviesData } = await axios.get(
-          `https://api.themoviedb.org/3/discover/movie?api_key=55de493263803a10375dd886602812d9`
-        );
-        return discoverMoviesData;
+        if (filters) {
+          const { data: discoverMoviesDataWithFilters } = await axios.get(
+            `https://api.themoviedb.org/3/discover/movie?with_genres=${filters}&api_key=55de493263803a10375dd886602812d9`
+          );
+          return discoverMoviesDataWithFilters;
+        } else {
+          const { data: discoverMoviesData } = await axios.get(
+            `https://api.themoviedb.org/3/discover/movie?api_key=55de493263803a10375dd886602812d9`
+          );
+          return discoverMoviesData;
+        }
       }
     },
   });
@@ -98,4 +102,3 @@ export function useFetchAllGenres() {
 //   });
 //   return queries;
 // }
-

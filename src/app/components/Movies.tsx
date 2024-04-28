@@ -18,7 +18,7 @@ export default function Movies() {
     isLoading: moviesReqLoading,
     isError: moviesReqIsError,
     error: moviesReqError,
-  } = useFetchMovies(searchQuery!, pageNum!);
+  } = useFetchMovies(searchQuery!, pageNum!, filters);
   const {
     data: allGenres,
     isLoading: allGenresLoading,
