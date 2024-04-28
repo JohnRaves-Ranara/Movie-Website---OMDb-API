@@ -23,20 +23,20 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
 
   const [filters, setFilters] = useState<any[]>([]);
   const { isOpen, setIsOpen } = useFilterDialogContext();
-
   //get `with_genres` urlparams (if any) and convert to number array
-  const URLParamsFiltersArray = params
+  const URLParamsFiltersArray = searchParams
     .get("with_genres")
     ?.split(",")
     .map((filter) => Number(filter));
 
   useEffect(() => {
-    console.log("use effect ran");
-    //if with_genres params exists, set filters to that
+    //if with_genres params exists, set filters to that, otherwise empty the filters.
     if (URLParamsFiltersArray) {
       setFilters(URLParamsFiltersArray);
+    } else {
+      setFilters([]);
     }
-  }, []);
+  }, [searchParams, isOpen]);
 
   const handleSelectGenre = (genreID: number) => {
     //remove selected filter in filters if it exists, otherwise add
@@ -45,9 +45,7 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
     } else {
       setFilters([...filters, genreID]);
     }
-    console.log(filters);
   };
-
 
   //this function returns:
   //true if [1,2,3]===[1,2,3,4] false if [1,2,3]===[3,2,1]
@@ -68,9 +66,7 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
       return true;
     }
   }
-  //comment
-  //test
-  //comment
+
   return (
     <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
       <DialogContent className="bg-gray-950 border-gray-950">
@@ -99,18 +95,17 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
                 //and prev and current filters are the same, so just close the dialog to avoid unnecessary fetch.
                 //3.if filters.length===0 and arrays are unequal, this means with_genres in url has filters
                 //but user cleared filters in the dialog, so clear filters by deleting with_genres in urlsearchparams.
-                if(checkArrayInequality(URLParamsFiltersArray, filters)){
-                  if(filters.length!==0){
-                    params.set("with_genres", filters.join(","))
-                  }
-                  else{
-                    params.delete("with_genres")
+                if (checkArrayInequality(URLParamsFiltersArray, filters)) {
+                  if (filters.length !== 0) {
+                    params.set("with_genres", filters.join(","));
+                  } else {
+                    params.delete("with_genres");
                   }
                 }
               } catch (e) {
                 throw new Error(`${e}`);
               } finally {
-                router.replace(`${pathname}?${params.toString()}`);
+                router.push(`${pathname}?${params.toString()}`);
                 setIsOpen(false);
               }
             }}
