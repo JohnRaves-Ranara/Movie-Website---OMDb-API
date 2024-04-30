@@ -1,5 +1,5 @@
 "use client";
-import { useFetchMovieDetails } from "@/app/api/omdb_api";
+import { useFetchMovieDetails } from "@/app/api/tmdb_api";
 import MovieBackdrop from "./MovieBackdrop";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import MoviePoster from "@/app/components/MoviePoster";
