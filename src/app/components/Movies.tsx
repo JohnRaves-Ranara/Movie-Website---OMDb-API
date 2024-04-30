@@ -1,4 +1,5 @@
 "use client";
+import React, { useEffect } from "react";
 import {
   useFetchAllGenres,
   useInfiniteFetchDiscoverMovies,
@@ -10,6 +11,10 @@ import LoadingComponent from "./LoadingComponent";
 import MovieNotFound from "./MovieNotFound";
 import MovieSearchResults from "./MovieSearchResults";
 import { useSearchParams } from "next/navigation";
+import { useInView } from "react-intersection-observer";
+import { Skeleton } from "@/components/ui/skeleton";
+import FilterDialog from "./FilterDialog";
+import MovieCardsSkeleton from "./skeletons/MovieCardsSkeleton";
 
 export default function Movies() {
   const searchParams = useSearchParams();
@@ -29,6 +34,8 @@ export default function Movies() {
     isLoading: discoverMoviesIsLoading,
     isError: discoverMoviesIsError,
     error: discoverMoviesError,
+    isFetchingNextPage,
+    fetchNextPage,
   } = useInfiniteFetchDiscoverMovies(filters);
 
   const {
@@ -37,6 +44,14 @@ export default function Movies() {
     isError: allGenresIsError,
     error: allGenresError,
   } = useFetchAllGenres();
+
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, inView]);
 
   if (discoverMoviesIsLoading || movieSearchIsLoading || allGenresLoading)
     return <LoadingComponent />;
@@ -66,15 +81,38 @@ export default function Movies() {
     const pages = discoverMovies!.pages;
     return (
       <div>
-        {pages.map((page) => {
+        {pages.map((page, index) => {
           return (
-            <DiscoverMovies
-              key={page.page}
-              movies={page.results}
-              allGenres={allGenres!}
-            />
+            <React.Fragment key={index}>
+              {index === 0 ? (
+                <DiscoverMovies
+                  key={page.page}
+                  totalResults={page.total_results}
+                  isFirstPage={true}
+                  movies={page.results}
+                  allGenres={allGenres!}
+                />
+              ) : (
+                <DiscoverMovies
+                  key={page.page}
+                  totalResults={page.total_results}
+                  isFirstPage={false}
+                  movies={page.results}
+                  allGenres={allGenres!}
+                />
+              )}
+            </React.Fragment>
           );
         })}
+        <div ref={ref} className="bg-gray-950">
+          {isFetchingNextPage ? (
+            <MovieCardsSkeleton/>
+          ) : (
+            <div className="w-full px-24 py-24 text-white text-xl flex items-center justify-center">
+              End of results
+            </div>
+          )}
+        </div>
       </div>
     );
   }
