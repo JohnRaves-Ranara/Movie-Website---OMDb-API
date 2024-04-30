@@ -20,7 +20,6 @@ export function useFetchMovieDetails(
       const { data: movieDetails } = await axios.get(
         `https://api.themoviedb.org/3/movie/${movieID}?api_key=55de493263803a10375dd886602812d9`
       );
-      console.log(`MOVIE DETAILS ${movieDetails}`);
       return movieDetails;
     },
   });
@@ -46,15 +45,15 @@ export function useInfiniteFetchDiscoverMovies(
 ): UseInfiniteQueryResult<InfiniteData<MoviesRequest, unknown>, Error> {
   const query = useInfiniteQuery({
     queryKey: ["discovermovies", filters],
-    queryFn: async (): Promise<MoviesRequest> => {
+    queryFn: async ({pageParam} : {pageParam: number}): Promise<MoviesRequest> => {
       if (filters) {
         const { data: discoverMoviesDataWithFilters } = await axios.get(
-          `https://api.themoviedb.org/3/discover/movie?with_genres=${filters}&api_key=55de493263803a10375dd886602812d9`
+          `https://api.themoviedb.org/3/discover/movie?with_genres=${filters}&page=${pageParam}&api_key=55de493263803a10375dd886602812d9`
         );
         return discoverMoviesDataWithFilters;
       } else {
         const { data: discoverMoviesData } = await axios.get(
-          `https://api.themoviedb.org/3/discover/movie?api_key=55de493263803a10375dd886602812d9`
+          `https://api.themoviedb.org/3/discover/movie?page=${pageParam}&api_key=55de493263803a10375dd886602812d9`
         );
         return discoverMoviesData;
       }
