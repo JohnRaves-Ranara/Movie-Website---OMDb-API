@@ -54,7 +54,11 @@ export default function Movies() {
   }, [fetchNextPage, inView]);
 
   if (discoverMoviesIsLoading || movieSearchIsLoading || allGenresLoading)
-    return <LoadingComponent />;
+    return (
+      <div className="bg-gray-950 pt-[30vh] min-h-screen">
+        <MovieCardsSkeleton numberOfCards={8} />
+      </div>
+    );
   if (discoverMoviesIsError || allGenresIsError)
     return (
       <ErrorComponent error={`${discoverMoviesError ?? allGenresError}`} />
@@ -106,7 +110,7 @@ export default function Movies() {
         })}
         <div ref={ref} className="bg-gray-950">
           {isFetchingNextPage ? (
-            <MovieCardsSkeleton/>
+            <MovieCardsSkeleton numberOfCards={4} />
           ) : (
             <div className="w-full px-24 py-24 text-white text-xl flex items-center justify-center">
               End of results
