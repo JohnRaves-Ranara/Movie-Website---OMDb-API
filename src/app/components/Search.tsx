@@ -17,7 +17,7 @@ export default function Search() {
   const handleSearch = useDebouncedCallback((searchTerm: string) => {
     const params = new URLSearchParams(searchParams);
     if (searchTerm) {
-      // params.delete("with_genres")
+      params.delete("with_genres")
       paramsSetAllFromObj(
         [
           ["query", searchTerm],
