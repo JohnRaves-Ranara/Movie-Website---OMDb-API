@@ -78,8 +78,8 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
               onClick={() => setFilters([])}
               type="button"
               className={`py-2 px-4 ${
-                filters.length === 0 ? "bg-gray-400/50" : "bg-gray-400"
-              } text-black text-base rounded-full font-medium`}
+                filters.length === 0 ? "bg-gray-400/50 text-black" : "bg-red-500 text-white"
+              } text-base rounded-full font-medium`}
             >
               Clear Filters
             </button>
