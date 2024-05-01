@@ -1,8 +1,7 @@
 "use client";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import {useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { useDebounce } from "../custom-hooks/useDebounce";
 
 export default function Search() {
   const searchParams = useSearchParams();
