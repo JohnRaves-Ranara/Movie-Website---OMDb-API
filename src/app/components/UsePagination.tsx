@@ -1,8 +1,5 @@
 import * as React from "react";
-import usePagination, {
-  UsePaginationResult,
-} from "@mui/material/usePagination";
-import { styled } from "@mui/material/styles";
+import usePagination from "@mui/material/usePagination";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
@@ -51,9 +48,11 @@ export default function UsePagination({ totalPages }: UsePaginationProps) {
               </button>
             );
           } else {
-            if (type === "previous" && currentPage === 1) {children = null;}
-            else if (type === "next" && currentPage === totalPages) {children = null;}
-            else{
+            if (type === "previous" && currentPage === 1) {
+              children = null;
+            } else if (type === "next" && currentPage === totalPages) {
+              children = null;
+            } else {
               children = (
                 <button
                   className={`size-[3em] border-white border-2 border-solid  rounded-[100%] hover:bg-white hover:text-black transition-all flex justify-center items-center`}

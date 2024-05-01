@@ -7,13 +7,10 @@ import {
 } from "../api/tmdb_api";
 import DiscoverMovies from "./DiscoverMovies";
 import ErrorComponent from "./ErrorComponent";
-import LoadingComponent from "./LoadingComponent";
 import MovieNotFound from "./MovieNotFound";
 import MovieSearchResults from "./MovieSearchResults";
 import { useSearchParams } from "next/navigation";
 import { useInView } from "react-intersection-observer";
-import { Skeleton } from "@/components/ui/skeleton";
-import FilterDialog from "./FilterDialog";
 import MovieCardsSkeleton from "./skeletons/MovieCardsSkeleton";
 
 export default function Movies() {

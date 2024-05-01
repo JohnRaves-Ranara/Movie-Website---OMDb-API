@@ -3,12 +3,10 @@ import {
   UseInfiniteQueryResult,
   UseQueryResult,
   useInfiniteQuery,
-  useQueries,
   useQuery,
 } from "@tanstack/react-query";
-import { Genre, Movie, MovieDetails, MoviesRequest } from "../utils/types";
+import { Genre, MovieDetails, MoviesRequest } from "../utils/types";
 import axios from "axios";
-import { use } from "react";
 
 export function useFetchMovieDetails(
   movieID: number
@@ -45,7 +43,11 @@ export function useInfiniteFetchDiscoverMovies(
 ): UseInfiniteQueryResult<InfiniteData<MoviesRequest, unknown>, Error> {
   const query = useInfiniteQuery({
     queryKey: ["discovermovies", filters],
-    queryFn: async ({pageParam} : {pageParam: number}): Promise<MoviesRequest> => {
+    queryFn: async ({
+      pageParam,
+    }: {
+      pageParam: number;
+    }): Promise<MoviesRequest> => {
       if (filters) {
         const { data: discoverMoviesDataWithFilters } = await axios.get(
           `https://api.themoviedb.org/3/discover/movie?with_genres=${filters}&page=${pageParam}&api_key=55de493263803a10375dd886602812d9`
