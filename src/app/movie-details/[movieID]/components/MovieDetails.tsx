@@ -4,13 +4,14 @@ import MovieBackdrop from "./MovieBackdrop";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import MoviePoster from "@/app/components/MoviePoster";
 import Info from "./Info";
+import MovieDetailsSkeleton from "@/app/components/skeletons/MovieDetailsSkeleton";
 
 type MovieDetailsProps = {
   movieID: number;
 };
 
 //@ts-ignore
-const imdbIcon : IconProp = 'fa-brands fa-imdb'
+const imdbIcon: IconProp = "fa-brands fa-imdb";
 
 export default function MovieDetails({ movieID }: MovieDetailsProps) {
   const {
@@ -21,11 +22,7 @@ export default function MovieDetails({ movieID }: MovieDetailsProps) {
   } = useFetchMovieDetails(movieID);
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen grid place-items-center bg-gray-950 text-white">
-        LOADING...
-      </div>
-    );
+    return <MovieDetailsSkeleton />;
   }
   if (isError) {
     return (
