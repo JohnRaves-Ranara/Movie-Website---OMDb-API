@@ -4,21 +4,24 @@ import Link from "next/link";
 
 type MovieCardProps = {
   movie: Movie;
-  allGenres: Genre[]
+  allGenres: Genre[];
 };
 
-export default function MovieCard({ movie, allGenres}: MovieCardProps) {
+export default function MovieCard({ movie, allGenres }: MovieCardProps) {
   return (
     <>
-      <Link href={`/movie-details/${movie.id}`}>
+      <Link
+        href={`/movie-details/${movie.id}`}
+        className="flex flex-col w-full text-2xs mobile-l:text-xs sm:text-sm xl:text-base"
+      >
         <MoviePoster
           movie={movie}
           isMovieDetailsPage={false}
           allGenres={allGenres}
         />
-        <div className="text-center mt-5 space-y-2">
+        <div className="text-center mt-3 space-y-1 px-4">
           <p className="line-clamp-2">{movie.title}</p>
-          <p>{movie.release_date?.split("-")[0]}</p>
+          <p className="text-gray-400/70">{movie.release_date?.split("-")[0]}</p>
         </div>
       </Link>
     </>

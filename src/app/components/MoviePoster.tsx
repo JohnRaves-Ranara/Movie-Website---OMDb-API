@@ -26,7 +26,7 @@ export default function MoviePoster({
   }
   return (
     <>
-      <div className="bg-gray-600 overflow-hidden group relative h-[400px] w-[300px]">
+      <div className="bg-gray-600 group relative h-[60vw] md:h-[33vw] lg:h-[30vw] w-full overflow-hidden">
         {!isMovieDetailsPage && (
           <div className="bg-black/50 opacity-0 absolute z-10 text-black group-hover:opacity-100 transition-opacity size-full flex flex-col justify-center gap-8 items-center">
             <p className="text-2xl font-bold">

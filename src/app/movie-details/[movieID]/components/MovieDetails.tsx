@@ -35,7 +35,9 @@ export default function MovieDetails({ movieID }: MovieDetailsProps) {
     return (
       <div className="h-screen bg-gray-950 relative">
         <div className="absolute size-full bg-black/50 flex justify-center items-center z-10 gap-12">
+          <div className="h-[400px] w-[300px] overflow-hidden">
           <MoviePoster movie={movie} isMovieDetailsPage={true}></MoviePoster>
+          </div>
           <Info movie={movie}></Info>
         </div>
         <MovieBackdrop backdrop={movie.backdrop_path}></MovieBackdrop>
