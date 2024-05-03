@@ -26,14 +26,18 @@ export default function MoviePoster({
   }
   return (
     <>
-      <div className="bg-gray-600 group relative h-[60vw] md:h-[33vw] lg:h-[30vw] w-full overflow-hidden">
+      <div
+        className={`bg-gray-600 group relative h-[60vw] md:h-[33vw] lg:h-[30vw] ${
+          isMovieDetailsPage ? "w-[300px]" : "w-full"
+        } overflow-hidden`}
+      >
         {!isMovieDetailsPage && (
-          <div className="bg-black/50 opacity-0 absolute z-10 text-black group-hover:opacity-100 transition-opacity size-full flex flex-col justify-center gap-8 items-center">
+          <div className="absolute z-10 flex flex-col items-center justify-center gap-8 text-black transition-opacity opacity-0 bg-black/50 group-hover:opacity-100 size-full">
             <p className="text-2xl font-bold">
               <span className="text-purple-500">{vote_avg?.toFixed(1)}</span>
               <span className="text-gray-300">/10</span>
             </p>
-            <div className="text-gray-300 flex flex-wrap justify-center w-full items-center gap-4 text-sm px-6">
+            <div className="flex flex-wrap items-center justify-center w-full gap-4 px-6 text-sm text-gray-300">
               {allGenres &&
                 genreNamesOfMovie?.map((genreName, index) => {
                   return (
@@ -52,7 +56,7 @@ export default function MoviePoster({
             // width={300}
             fill={true}
             src={`https://image.tmdb.org/t/p/original${poster}`}
-            className="object-cover group-hover:scale-110 transition-transform w-full h-auto"
+            className="object-cover w-full h-auto transition-transform group-hover:scale-110"
             alt=""
           ></Image>
         ) : (
@@ -60,7 +64,7 @@ export default function MoviePoster({
           //   loading="lazy"
           //   src={`https://image.tmdb.org/t/p/original${poster}`}
           //   alt=""
-          //   className="size-full object-cover group-hover:scale-110 transition-transform"
+          //   className="object-cover transition-transform size-full group-hover:scale-110"
           // />
           <div className="bg-gray-600 flex items-center justify-center h-[400px]">
             No Image Available

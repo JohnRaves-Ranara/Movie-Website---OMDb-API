@@ -26,18 +26,16 @@ export default function MovieDetails({ movieID }: MovieDetailsProps) {
   }
   if (isError) {
     return (
-      <div className="min-h-screen grid place-items-center bg-gray-950 text-white">
+      <div className="grid min-h-screen text-white place-items-center bg-gray-950">
         ERROR {error.toString()}
       </div>
     );
   }
   if (movie) {
     return (
-      <div className="h-screen bg-gray-950 relative">
-        <div className="absolute size-full bg-black/50 flex justify-center items-center z-10 gap-12">
-          <div className="h-[400px] w-[300px] overflow-hidden">
+      <div className="relative h-screen bg-gray-950">
+        <div className="absolute z-10 flex items-center justify-center gap-12 size-full bg-black/50">
           <MoviePoster movie={movie} isMovieDetailsPage={true}></MoviePoster>
-          </div>
           <Info movie={movie}></Info>
         </div>
         <MovieBackdrop backdrop={movie.backdrop_path}></MovieBackdrop>
