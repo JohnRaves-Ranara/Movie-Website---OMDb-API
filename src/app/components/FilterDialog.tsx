@@ -71,20 +71,22 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
     <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
       <DialogContent className="bg-gray-950 border-gray-950">
         <DialogHeader>
-          <DialogTitle className="text-white flex justify-between items-center pt-2">
+          <DialogTitle className="flex items-center justify-between pt-2 text-white text-2xs mobile-l:text-sm lg:text-base">
             <p>Select Filters</p>
             <button
               disabled={filters.length === 0}
               onClick={() => setFilters([])}
               type="button"
-              className={`py-2 px-4 ${
-                filters.length === 0 ? "bg-gray-400/50 text-black" : "bg-red-500 text-white"
-              } text-base rounded-full font-medium`}
+              className={`py-1 px-3 mobile-l:px-[0.85rem] mobile-l:py-[0.4rem] mobile-m:py-[0.35rem] md:px-4 md:py-2 ${
+                filters.length === 0
+                  ? "bg-gray-400/50 text-black"
+                  : "bg-red-500 text-white"
+              } rounded-full font-medium`}
             >
               Clear Filters
             </button>
           </DialogTitle>
-          <div className="flex flex-wrap items-center py-8 gap-2">
+          <div className="flex flex-wrap items-center gap-1 py-2 mobile-l:px-[0.85rem] mobile-l:py-[0.4rem] mobile-m:py-[0.35rem] mobile-l:gap-2 text-2xs mobile-l:text-sm lg:text-base">
             {allGenres.map((genre) => {
               return (
                 <GenreFilter
@@ -121,7 +123,7 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
                 setIsOpen(false);
               }
             }}
-            className="bg-purple-500 py-2 px-4 text-white rounded-full w-full"
+            className="w-full py-1 mobile-m:py-[0.35rem] mobile-l:py-[0.4rem] md:py-2 text-white bg-purple-500 rounded-full text-2xs mobile-l:text-sm lg:text-base"
           >
             Confirm
           </button>
