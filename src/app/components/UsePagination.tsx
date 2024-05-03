@@ -1,8 +1,5 @@
 import * as React from "react";
-import usePagination, {
-  UsePaginationResult,
-} from "@mui/material/usePagination";
-import { styled } from "@mui/material/styles";
+import usePagination from "@mui/material/usePagination";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
@@ -32,7 +29,7 @@ export default function UsePagination({ totalPages }: UsePaginationProps) {
 
   return (
     <nav className="mt-24">
-      <ul className="space-x-4 text-white flex justify-center items-center">
+      <ul className="flex items-center justify-center space-x-1 text-white mobile-l:space-x-2 md:space-x-3">
         {items.map(({ page, type, selected, ...item }, index) => {
           let children = null;
 
@@ -41,7 +38,7 @@ export default function UsePagination({ totalPages }: UsePaginationProps) {
           } else if (type === "page") {
             children = (
               <button
-                className={`size-[3em] border-white border-2 border-solid  rounded-[100%] hover:bg-white hover:text-black transition-all ${
+                className={`flex items-center justify-center text-2xs mobile-l:text-sm sm:text-base lg:text-lg size-[9.5vw] md:size-[6vw] xl:size-[4vw] border-white border-[1px] mobile-l:border-2 border-solid  rounded-[100%] hover:bg-white hover:text-black transition-all ${
                   selected && "bg-purple-500 border-none"
                 }`}
                 type="button"
@@ -51,19 +48,21 @@ export default function UsePagination({ totalPages }: UsePaginationProps) {
               </button>
             );
           } else {
-            if (type === "previous" && currentPage === 1) {children = null;}
-            else if (type === "next" && currentPage === totalPages) {children = null;}
-            else{
+            if (type === "previous" && currentPage === 1) {
+              children = null;
+            } else if (type === "next" && currentPage === totalPages) {
+              children = null;
+            } else {
               children = (
                 <button
-                  className={`size-[3em] border-white border-2 border-solid  rounded-[100%] hover:bg-white hover:text-black transition-all flex justify-center items-center`}
+                  className={`flex items-center justify-center size-[9.5vw] md:size-[6vw] xl:size-[4vw] border-white border-[1px] mobile-l:border-2 border-solid rounded-[100%] hover:bg-white hover:text-black transition-all`}
                   type="button"
                   {...item}
                 >
                   {type === "previous" ? (
-                    <IconChevronLeft></IconChevronLeft>
+                    <IconChevronLeft className="h-[5vw] mobile-l:h-[4vw] md:h-[2.5vw] max-h-6"></IconChevronLeft>
                   ) : (
-                    <IconChevronRight></IconChevronRight>
+                    <IconChevronRight className="h-[5vw] mobile-l:h-[4vw] md:h-[2.5vw] max-h-6 "></IconChevronRight>
                   )}
                 </button>
               );

@@ -7,13 +7,10 @@ import {
 } from "../api/tmdb_api";
 import DiscoverMovies from "./DiscoverMovies";
 import ErrorComponent from "./ErrorComponent";
-import LoadingComponent from "./LoadingComponent";
 import MovieNotFound from "./MovieNotFound";
 import MovieSearchResults from "./MovieSearchResults";
 import { useSearchParams } from "next/navigation";
 import { useInView } from "react-intersection-observer";
-import { Skeleton } from "@/components/ui/skeleton";
-import FilterDialog from "./FilterDialog";
 import MovieCardsSkeleton from "./skeletons/MovieCardsSkeleton";
 
 export default function Movies() {
@@ -54,11 +51,7 @@ export default function Movies() {
   }, [fetchNextPage, inView]);
 
   if (discoverMoviesIsLoading || movieSearchIsLoading || allGenresLoading)
-    return (
-      <div className="bg-gray-950 pt-[30vh] min-h-screen">
-        <MovieCardsSkeleton numberOfCards={8} />
-      </div>
-    );
+    return <MovieCardsSkeleton numberOfCards={8} />;
   if (discoverMoviesIsError || allGenresIsError)
     return (
       <ErrorComponent error={`${discoverMoviesError ?? allGenresError}`} />
@@ -82,10 +75,10 @@ export default function Movies() {
       return <MovieNotFound />;
     }
   } else {
-    const pages = discoverMovies!.pages;
+    const pages = discoverMovies?.pages;
     return (
       <div>
-        {pages.map((page, index) => {
+        {pages?.map((page, index) => {
           return (
             <React.Fragment key={index}>
               {index === 0 ? (
@@ -110,7 +103,7 @@ export default function Movies() {
         })}
         <div ref={ref} className="bg-gray-950">
           {isFetchingNextPage ? (
-            <MovieCardsSkeleton numberOfCards={4} />
+            <MovieCardsSkeleton numberOfCards={4}/>
           ) : (
             <div className="w-full px-24 py-24 text-white text-xl flex items-center justify-center">
               End of results

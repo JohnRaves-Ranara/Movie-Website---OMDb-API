@@ -18,6 +18,15 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        "mobile-s" : "320px",
+        "mobile-m" : "375px",
+        "mobile-l" : "425px"
+      },
+      fontSize: {
+        "2xs": "0.7rem",
+        "3xs": "0.6rem"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
