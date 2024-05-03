@@ -8,7 +8,7 @@ export default function MovieDetailsSkeleton() {
         <Skeleton className="w-[45vw] self-center lg:self-start h-8 bg-gray-500/25 max-w-[250px]"></Skeleton>
         <Skeleton className="w-[20vw] h-4 md:h-6 bg-gray-500/25 self-center lg:self-start"></Skeleton>
         <div className="flex flex-col gap-4 lg:flex-row">
-          <Skeleton className="w-[30%] h-4 md:h-6 bg-gray-500/25"></Skeleton>
+          <Skeleton className="w-[15%] mobile-l:w-[10%] h-4 md:h-6 bg-gray-500/25"></Skeleton>
           <Skeleton className="w-[50%] h-4 md:h-6 bg-gray-500/25"></Skeleton>
         </div>
         <Skeleton className="w-[15vw] h-4 md:h-6 bg-gray-500/25"></Skeleton>
