@@ -38,7 +38,7 @@ export default function UsePagination({ totalPages }: UsePaginationProps) {
           } else if (type === "page") {
             children = (
               <button
-                className={`flex items-center justify-center text-2xs mobile-l:text-sm sm:text-base lg:text-lg size-[9.5vw] md:size-[6vw] xl:size-[4vw] border-white border-2 border-solid  rounded-[100%] hover:bg-white hover:text-black transition-all ${
+                className={`flex items-center justify-center text-2xs mobile-l:text-sm sm:text-base lg:text-lg size-[9.5vw] md:size-[6vw] xl:size-[4vw] border-white border-[1px] mobile-l:border-2 border-solid  rounded-[100%] hover:bg-white hover:text-black transition-all ${
                   selected && "bg-purple-500 border-none"
                 }`}
                 type="button"
@@ -55,7 +55,7 @@ export default function UsePagination({ totalPages }: UsePaginationProps) {
             } else {
               children = (
                 <button
-                  className={`flex items-center justify-center size-[9.5vw] md:size-[6vw] xl:size-[4vw] border-white border-2 border-solid rounded-[100%] hover:bg-white hover:text-black transition-all`}
+                  className={`flex items-center justify-center size-[9.5vw] md:size-[6vw] xl:size-[4vw] border-white border-[1px] mobile-l:border-2 border-solid rounded-[100%] hover:bg-white hover:text-black transition-all`}
                   type="button"
                   {...item}
                 >
