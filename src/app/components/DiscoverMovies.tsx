@@ -39,8 +39,8 @@ export default function DiscoverMovies({
               className="relative flex items-center gap-3 px-4 py-2 bg-purple-500 rounded-full hover:bg-purple-800 group "
             >
               {filters && (
-                <div className="box-content p-2 rounded-full text-gray-700 bg-yellow-400 absolute -top-2 -right-10 text-[10px]">
-                  {`${filters.split(",").length || 0} selected`}
+                <div className="box-content size-6 lg:size-8 grid place-items-center rounded-full text-gray-700 bg-yellow-400 -top-2 lg:-top-3 -right-2 lg:-right-3 absolute text-xs lg:text-base">
+                  {`${filters.split(",").length || 0}`}
                 </div>
               )}
               <p className="text-white text-2xs mobile-l:text-xs sm:text-sm xl:text-base">
