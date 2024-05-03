@@ -19,7 +19,7 @@ export default function MovieSearchResults({
   return (
     <div className="min-h-screen bg-gray-950 px-[4vw] lg:px-24 pt-[12vh] sm:pt-[14vh] md:pt-[16vh] lg:pt-[18vh] xl:pt-[16vh] pb-24 ">
       <div className="flex items-center gap-8 mb-8">
-      <h1 className="text-white text-md mobile-l:text-lg sm:text-2xl lg:text-3xl xl:text-4xl overflow-hidden before:block before:h-8 before:w-[0.45rem] before:bg-purple-500 flex items-center gap-4">
+      <h1 className="text-white text-base mobile-l:text-lg sm:text-2xl lg:text-3xl xl:text-4xl overflow-hidden before:block before:h-8 before:w-[0.45rem] before:bg-purple-500 flex items-center gap-4">
         
           Showing results for "{inputQuery}"
         </h1>
