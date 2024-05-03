@@ -75,10 +75,10 @@ export default function Movies() {
       return <MovieNotFound />;
     }
   } else {
-    const pages = discoverMovies!.pages;
+    const pages = discoverMovies?.pages;
     return (
       <div>
-        {pages.map((page, index) => {
+        {pages?.map((page, index) => {
           return (
             <React.Fragment key={index}>
               {index === 0 ? (
