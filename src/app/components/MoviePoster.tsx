@@ -24,25 +24,26 @@ export default function MoviePoster({
       return foundGenre!.name
     });
   }
+
   return (
     <>
       <div
-        className={`bg-gray-600 group relative h-[60vw] md:h-[33vw] lg:h-[30vw] ${
-          isMovieDetailsPage ? "w-[300px]" : "w-full"
+        className={`bg-gray-600 group relative ${
+          isMovieDetailsPage ? "w-[50vw] h-[60vw] lg:h-[40vw] max-h-[400px] max-w-[300px]" : "w-full h-[60vw] md:h-[33vw] lg:h-[30vw]"
         } overflow-hidden`}
       >
         {!isMovieDetailsPage && (
-          <div className="absolute z-10 flex flex-col items-center justify-center gap-8 text-black transition-opacity opacity-0 bg-black/50 group-hover:opacity-100 size-full">
-            <p className="text-2xl font-bold">
+          <div className="absolute z-10 flex flex-col items-center justify-center gap-8 overflow-auto text-black transition-opacity opacity-0 bg-black/50 group-hover:opacity-100 size-full">
+            <strong className="text-lg lg:text-2xl">
               <span className="text-purple-500">{vote_avg?.toFixed(1)}</span>
               <span className="text-gray-300">/10</span>
-            </p>
-            <div className="flex flex-wrap items-center justify-center w-full gap-4 px-6 text-sm text-gray-300">
+            </strong>
+            <div className="flex flex-wrap items-center justify-center w-full gap-2 px-6 text-gray-300">
               {allGenres &&
                 genreNamesOfMovie?.map((genreName, index) => {
                   return (
                     <em key={index} className="pr-[2px]">
-                      {genreName}
+                      {genreName==="Science Fiction" ? "Sci-Fi" : genreName}
                     </em>
                   );
                 })}
@@ -52,21 +53,13 @@ export default function MoviePoster({
         {poster ? (
           <Image
             quality={10}
-            // height={400}
-            // width={300}
             fill={true}
             src={`https://image.tmdb.org/t/p/original${poster}`}
             className="object-cover w-full h-auto transition-transform group-hover:scale-110"
             alt=""
           ></Image>
         ) : (
-          // <img
-          //   loading="lazy"
-          //   src={`https://image.tmdb.org/t/p/original${poster}`}
-          //   alt=""
-          //   className="object-cover transition-transform size-full group-hover:scale-110"
-          // />
-          <div className="bg-gray-600 flex items-center justify-center h-[400px]">
+          <div className="flex items-center justify-center bg-gray-600 size-full">
             No Image Available
           </div>
         )}

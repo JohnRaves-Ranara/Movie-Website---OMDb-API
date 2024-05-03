@@ -10,20 +10,7 @@ export default function MovieBackdrop({
       fill={true}
       src={`https://image.tmdb.org/t/p/original${backdrop}`}
       alt=""
-      className="size-full blur-sm object-cover"
+      className="object-cover size-full blur-sm"
     ></Image>
-
-    // <div style={{
-    //     backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop})`
-    // }}
-    // className="size-full blur-sm bg-cover"
-    // ></div>
-
-    // <img
-    //     loading="lazy"
-    //     src={`https://image.tmdb.org/t/p/original${backdrop}`}
-    //     alt=""
-    //     className="size-full blur-sm object-cover"
-    //   />
   );
 }
