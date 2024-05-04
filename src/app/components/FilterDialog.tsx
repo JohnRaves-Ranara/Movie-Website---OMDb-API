@@ -33,7 +33,12 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
   useEffect(() => {
     //if with_genres params exists, set filters to that, otherwise empty the filters.
     if (URLParamsFiltersArray) {
-      setFilters(URLParamsFiltersArray);
+      setFilters(
+        searchParams
+          .get("with_genres")
+          ?.split(",")
+          .map((filter) => Number(filter)) ?? []
+      );
     } else {
       setFilters([]);
     }
