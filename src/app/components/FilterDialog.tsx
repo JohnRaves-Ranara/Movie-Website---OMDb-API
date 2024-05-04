@@ -23,11 +23,12 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
 
   const [filters, setFilters] = useState<any[]>([]);
   const { isOpen, setIsOpen } = useFilterDialogContext();
-  //get `with_genres` urlparams (if any) and convert to number array
-  const URLParamsFiltersArray = searchParams
-    .get("with_genres")
-    ?.split(",")
-    .map((filter) => Number(filter));
+  //get `with_genres` urlparams (if any) and convert to number array, if undefined, set to empty array
+  const URLParamsFiltersArray =
+    searchParams
+      .get("with_genres")
+      ?.split(",")
+      .map((filter) => Number(filter)) ?? [];
 
   useEffect(() => {
     //if with_genres params exists, set filters to that, otherwise empty the filters.
@@ -49,22 +50,17 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
 
   //this function returns:
   //true if [1,2,3]===[1,2,3,4] false if [1,2,3]===[3,2,1]
-  //true if URLParamsFiltersArray is undefined
   function checkArrayInequality(
-    URLParamsFiltersArray: number[] | undefined,
+    URLParamsFiltersArray: number[],
     filters: number[]
   ) {
-    if (URLParamsFiltersArray) {
-      if (URLParamsFiltersArray!.length !== filters.length) return true;
-      URLParamsFiltersArray!.sort();
-      filters.sort();
-      for (let i = 0; i < URLParamsFiltersArray!.length; i++) {
-        if (URLParamsFiltersArray![i] !== filters[i]) return true;
-      }
-      return false;
-    } else {
-      return true;
+    if (URLParamsFiltersArray!.length !== filters.length) return true;
+    URLParamsFiltersArray!.sort();
+    filters.sort();
+    for (let i = 0; i < URLParamsFiltersArray!.length; i++) {
+      if (URLParamsFiltersArray![i] !== filters[i]) return true;
     }
+    return false;
   }
 
   return (
@@ -86,7 +82,7 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
               Clear Filters
             </button>
           </DialogTitle>
-          <div className="flex flex-wrap items-center gap-1 py-2 mobile-l:px-[0.85rem] mobile-l:py-[0.4rem] mobile-m:py-[0.35rem] mobile-l:gap-2 text-2xs mobile-l:text-sm lg:text-base">
+          <ul className="flex flex-wrap items-center gap-1 py-2 mobile-l:px-[0.85rem] mobile-l:py-[0.4rem] mobile-m:py-[0.35rem] mobile-l:gap-2 text-2xs mobile-l:text-sm lg:text-base">
             {allGenres.map((genre) => {
               return (
                 <GenreFilter
@@ -97,7 +93,7 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
                 ></GenreFilter>
               );
             })}
-          </div>
+          </ul>
         </DialogHeader>
         <DialogFooter>
           <button
@@ -112,14 +108,15 @@ export default function FilterDialog({ allGenres }: FilterDialogProps) {
                 if (checkArrayInequality(URLParamsFiltersArray, filters)) {
                   if (filters.length !== 0) {
                     params.set("with_genres", filters.join(","));
+                    router.push(`${pathname}?${params.toString()}`);
                   } else {
                     params.delete("with_genres");
+                    router.push(`${pathname}?${params.toString()}`);
                   }
                 }
               } catch (e) {
                 throw new Error(`${e}`);
               } finally {
-                router.push(`${pathname}?${params.toString()}`);
                 setIsOpen(false);
               }
             }}
