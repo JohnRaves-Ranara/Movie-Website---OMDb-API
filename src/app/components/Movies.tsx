@@ -51,7 +51,11 @@ export default function Movies() {
   }, [fetchNextPage, inView]);
 
   if (discoverMoviesIsLoading || movieSearchIsLoading || allGenresLoading)
-    return <MovieCardsSkeleton numberOfCards={8} />;
+    return (
+      <main className="pt-[12vh] sm:pt-[14vh] md:pt-[16vh] lg:pt-[18vh] xl:pt-[16vh] min-h-screen bg-gray-950 px-[4vw] lg:px-24">
+        <MovieCardsSkeleton numberOfCards={8} />
+      </main>
+    );
   if (discoverMoviesIsError || allGenresIsError)
     return (
       <ErrorComponent error={`${discoverMoviesError ?? allGenresError}`} />
@@ -77,7 +81,12 @@ export default function Movies() {
   } else {
     const pages = discoverMovies?.pages;
     return (
-      <>
+      <main
+        className={`min-h-screen bg-gray-950 px-[4vw] lg:px-24 ${
+          !isFetchingNextPage &&
+          "pt-[12vh] sm:pt-[14vh] md:pt-[16vh] lg:pt-[18vh] xl:pt-[16vh]"
+        }`}
+      >
         {pages?.map((page, index) => {
           return (
             <React.Fragment key={index}>
@@ -103,14 +112,14 @@ export default function Movies() {
         })}
         <div ref={ref} className="bg-gray-950">
           {isFetchingNextPage ? (
-            <MovieCardsSkeleton numberOfCards={4}/>
+            <MovieCardsSkeleton numberOfCards={4} />
           ) : (
             <div className="w-full px-24 py-24 text-white text-xl flex items-center justify-center">
               End of results
             </div>
           )}
         </div>
-      </>
+      </main>
     );
   }
 }

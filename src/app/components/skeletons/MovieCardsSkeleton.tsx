@@ -8,12 +8,7 @@ export default function MovieCardsSkeleton({
   numberOfCards,
 }: MovieCardSkeletonProps) {
   return (
-    <div
-      className={`min-h-screen bg-gray-950 ${numberOfCards === 8 && "pb-24"} ${
-        numberOfCards === 8 &&
-        "pt-[12vh] sm:pt-[14vh] md:pt-[16vh] lg:pt-[18vh] xl:pt-[16vh]"
-      } px-[4vw] lg:px-24 space-y-6`}
-    >
+    <section className={`${numberOfCards === 8 ? "pb-24" : "pb-4"} space-y-6`}>
       {numberOfCards === 8 && (
         <div className="flex justify-between">
           <Skeleton className="h-10 w-[45vw] lg:w-[450px] bg-gray-500/25"></Skeleton>
@@ -36,6 +31,6 @@ export default function MovieCardsSkeleton({
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }
