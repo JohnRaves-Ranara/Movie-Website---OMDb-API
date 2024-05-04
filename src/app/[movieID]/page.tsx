@@ -1,6 +1,7 @@
 import MovieDetails from "./components/MovieDetails";
 import Providers from "../utils/providers";
 
+export const runtime = 'edge';
 export default async function Home({
   params,
 }: {
