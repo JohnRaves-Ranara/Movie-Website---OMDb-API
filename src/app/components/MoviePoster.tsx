@@ -36,9 +36,9 @@ export default function MoviePoster({
       >
         {!isMovieDetailsPage && (
           <div className="absolute z-10 flex flex-col items-center justify-center gap-6 overflow-auto text-black transition-opacity opacity-0 bg-black/55 group-hover:opacity-100 size-full">
-            <strong className="text-lg lg:text-2xl">
-              <span className="text-purple-500">{vote_avg?.toFixed(1)}</span>
-              <span className="text-gray-300">/10</span>
+            <strong className="text-lg lg:text-2xl flex">
+              <p className="text-purple-500">{vote_avg?.toFixed(1)}</p>
+              <p className="text-gray-300">/10</p>
             </strong>
             <div className="flex flex-wrap items-center justify-center w-full gap-2 px-6 text-gray-300">
               {allGenres &&

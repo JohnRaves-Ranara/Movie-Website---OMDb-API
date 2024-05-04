@@ -77,7 +77,7 @@ export default function Movies() {
   } else {
     const pages = discoverMovies?.pages;
     return (
-      <div>
+      <>
         {pages?.map((page, index) => {
           return (
             <React.Fragment key={index}>
@@ -110,7 +110,7 @@ export default function Movies() {
             </div>
           )}
         </div>
-      </div>
+      </>
     );
   }
 }
