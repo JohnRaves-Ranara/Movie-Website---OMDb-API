@@ -16,12 +16,12 @@ export default function MoviePoster({
   const poster = movie.poster_path;
   const vote_avg = movie.vote_average;
   let genreNamesOfMovie;
-  let genreIdsOfMovie = movie.genre_ids
+  let genreIdsOfMovie = movie.genre_ids;
 
   if (allGenres) {
     genreNamesOfMovie = genreIdsOfMovie?.map((genreId) => {
       let foundGenre = allGenres.find((genre) => genre.id === genreId);
-      return foundGenre!.name
+      return foundGenre!.name;
     });
   }
 
@@ -29,11 +29,13 @@ export default function MoviePoster({
     <>
       <div
         className={`bg-gray-600 group relative ${
-          isMovieDetailsPage ? "w-[50vw] h-[60vw] lg:h-[40vw] max-h-[400px] max-w-[300px]" : "w-full h-[60vw] md:h-[33vw] lg:h-[30vw]"
+          isMovieDetailsPage
+            ? "w-[50vw] h-[60vw] lg:h-[40vw] max-h-[400px] max-w-[300px]"
+            : "w-full h-[60vw] md:h-[33vw] lg:h-[30vw]"
         } overflow-hidden`}
       >
         {!isMovieDetailsPage && (
-          <div className="absolute z-10 flex flex-col items-center justify-center gap-8 overflow-auto text-black transition-opacity opacity-0 bg-black/50 group-hover:opacity-100 size-full">
+          <div className="absolute z-10 flex flex-col items-center justify-center gap-6 overflow-auto text-black transition-opacity opacity-0 bg-black/55 group-hover:opacity-100 size-full">
             <strong className="text-lg lg:text-2xl">
               <span className="text-purple-500">{vote_avg?.toFixed(1)}</span>
               <span className="text-gray-300">/10</span>
@@ -42,8 +44,11 @@ export default function MoviePoster({
               {allGenres &&
                 genreNamesOfMovie?.map((genreName, index) => {
                   return (
-                    <em key={index} className="pr-[2px]">
-                      {genreName==="Science Fiction" ? "Sci-Fi" : genreName}
+                    <em
+                      key={index}
+                      className="text-3xs mobile-m:text-2xs sm:text-sm md:text-xs lg:text-sm xl:text-base"
+                    >
+                      {genreName === "Science Fiction" ? "Sci-Fi" : genreName}
                     </em>
                   );
                 })}

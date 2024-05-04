@@ -7,7 +7,6 @@ type MovieCardSkeletonProps = {
 export default function MovieCardsSkeleton({
   numberOfCards,
 }: MovieCardSkeletonProps) {
-  console.log(`NUMER OF CARDS ${numberOfCards}`)
   return (
     <div
       className={`min-h-screen bg-gray-950 ${numberOfCards === 8 && "pb-24"} ${
@@ -22,7 +21,7 @@ export default function MovieCardsSkeleton({
         </div>
       )}
       <div
-        className={`grid grid-cols-2 md:grid-cols-4 lg:gap-x-8 xl:gap-x-16 auto-rows-auto gap-x-2 w-full`}
+        className={`grid grid-cols-2 md:grid-cols-4 lg:gap-x-8 xl:gap-x-16 gap-y-4 auto-rows-auto gap-x-2 w-full`}
       >
         {Array.from({ length: numberOfCards }).map((skeleton, index) => {
           return (
