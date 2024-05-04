@@ -10,7 +10,7 @@ type MovieCardProps = {
 export default function MovieCard({ movie, allGenres }: MovieCardProps) {
   return (
     <Link
-      href={`/movie-details/${movie.id}`}
+      href={`/${movie.id}`}
       className="flex flex-col w-full text-2xs mobile-l:text-xs sm:text-sm xl:text-base overflow-hidden"
     >
       <MoviePoster
