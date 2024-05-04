@@ -49,7 +49,7 @@ export default function Search() {
   }
 
   return (
-    <div className="w-screen pt-4 sm:pt-6 md:pt-7 lg:pt-8 fixed px-[4vw] lg:px-24 z-20">
+    <search className="w-screen pt-4 sm:pt-6 md:pt-7 lg:pt-8 fixed px-[4vw] lg:px-24 z-20">
       <input
         onChange={(e) => {
           setSearchInput(e.target.value)
@@ -60,6 +60,6 @@ export default function Search() {
         type="text"
         className="bg-gray-800/80 w-full px-5 py-2 sm:py-3 lg:py-4 text-2xs mobile-l:text-xs sm:text-sm xl:text-base rounded-lg text-white"
       />
-    </div>
+    </search>
   );
 }
