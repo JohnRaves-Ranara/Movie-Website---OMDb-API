@@ -1,4 +1,3 @@
-import { IconFilterFilled } from "@tabler/icons-react";
 import { Genre, Movie } from "../utils/types";
 import MovieCard from "./MovieCard";
 import UsePagination from "./UsePagination";
