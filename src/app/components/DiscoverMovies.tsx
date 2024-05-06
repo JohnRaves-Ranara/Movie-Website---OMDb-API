@@ -26,7 +26,7 @@ export default function DiscoverMovies({
     <>
       {isFirstPage ? (
         <section className="pb-4">
-          <FilterDialog allGenres={allGenres}></FilterDialog>
+          <FilterDialog allGenres={allGenres}/>
           <header className="flex items-center justify-between gap-8 mb-8">
             <h1 className="text-white text-md mobile-l:text-lg sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl overflow-hidden before:block before:h-8 before:w-[0.45rem] before:bg-purple-500 flex items-center gap-4">
               {filters

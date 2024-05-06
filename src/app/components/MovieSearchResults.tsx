@@ -1,6 +1,6 @@
 import { Genre, Movie } from "../utils/types";
 import MovieCard from "./MovieCard";
-import UsePagination from "./UsePagination";
+import Pagination from "./Pagination";
 
 type MovieSearchResultsProps = {
   movies: Movie[];
@@ -29,7 +29,7 @@ export default function MovieSearchResults({
           );
         })}
       </section>
-      <UsePagination totalPages={totalPages}></UsePagination>
+      <Pagination totalPages={totalPages}/>
     </main>
   );
 }

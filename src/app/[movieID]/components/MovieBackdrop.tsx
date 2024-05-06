@@ -11,6 +11,6 @@ export default function MovieBackdrop({
       src={`https://image.tmdb.org/t/p/original${backdrop}`}
       alt=""
       className="object-cover size-full blur-sm"
-    ></Image>
+    />
   );
 }

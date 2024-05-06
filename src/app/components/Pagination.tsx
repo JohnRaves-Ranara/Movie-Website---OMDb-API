@@ -7,7 +7,7 @@ type UsePaginationProps = {
   totalPages: number;
 };
 
-export default function UsePagination({ totalPages }: UsePaginationProps) {
+export default function Pagination({ totalPages }: UsePaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;

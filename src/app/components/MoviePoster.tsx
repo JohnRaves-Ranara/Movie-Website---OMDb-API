@@ -26,49 +26,47 @@ export default function MoviePoster({
   }
 
   return (
-    <>
-      <div
-        className={`bg-gray-600 group relative ${
-          isMovieDetailsPage
-            ? "w-[50vw] h-[60vw] lg:h-[40vw] max-h-[400px] max-w-[300px]"
-            : "w-full h-[60vw] md:h-[33vw] lg:h-[30vw]"
-        } overflow-hidden`}
-      >
-        {!isMovieDetailsPage && (
-          <div className="absolute z-10 flex flex-col items-center justify-center gap-6 overflow-auto text-black transition-opacity opacity-0 bg-black/55 group-hover:opacity-100 size-full">
-            <strong className="text-lg lg:text-2xl flex">
-              <p className="text-purple-500">{vote_avg?.toFixed(1)}</p>
-              <p className="text-gray-300">/10</p>
-            </strong>
-            <div className="flex flex-wrap items-center justify-center w-full gap-2 px-6 text-gray-300">
-              {allGenres &&
-                genreNamesOfMovie?.map((genreName, index) => {
-                  return (
-                    <em
-                      key={index}
-                      className="text-3xs mobile-m:text-2xs sm:text-sm md:text-xs lg:text-sm xl:text-base"
-                    >
-                      {genreName === "Science Fiction" ? "Sci-Fi" : genreName}
-                    </em>
-                  );
-                })}
-            </div>
+    <div
+      className={`bg-gray-600 group relative ${
+        isMovieDetailsPage
+          ? "w-[50vw] h-[60vw] lg:h-[40vw] max-h-[400px] max-w-[300px]"
+          : "w-full h-[60vw] md:h-[33vw] lg:h-[30vw]"
+      } overflow-hidden`}
+    >
+      {!isMovieDetailsPage && (
+        <div className="absolute z-10 flex flex-col items-center justify-center gap-6 overflow-auto text-black transition-opacity opacity-0 bg-black/55 group-hover:opacity-100 size-full">
+          <strong className="text-lg lg:text-2xl flex">
+            <p className="text-purple-500">{vote_avg?.toFixed(1)}</p>
+            <p className="text-gray-300">/10</p>
+          </strong>
+          <div className="flex flex-wrap items-center justify-center w-full gap-2 px-6 text-gray-300">
+            {allGenres &&
+              genreNamesOfMovie?.map((genreName, index) => {
+                return (
+                  <em
+                    key={index}
+                    className="text-3xs mobile-m:text-2xs sm:text-sm md:text-xs lg:text-sm xl:text-base"
+                  >
+                    {genreName === "Science Fiction" ? "Sci-Fi" : genreName}
+                  </em>
+                );
+              })}
           </div>
-        )}
-        {poster ? (
-          <Image
-            quality={10}
-            fill={true}
-            src={`https://image.tmdb.org/t/p/original${poster}`}
-            className="object-cover w-full h-auto transition-transform group-hover:scale-110"
-            alt=""
-          ></Image>
-        ) : (
-          <div className="flex items-center justify-center bg-gray-600 size-full">
-            No Image Available
-          </div>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+      {poster ? (
+        <Image
+          quality={10}
+          fill={true}
+          src={`https://image.tmdb.org/t/p/original${poster}`}
+          className="object-cover w-full h-auto transition-transform group-hover:scale-110"
+          alt=""
+        ></Image>
+      ) : (
+        <div className="flex items-center justify-center bg-gray-600 size-full">
+          No Image Available
+        </div>
+      )}
+    </div>
   );
 }
