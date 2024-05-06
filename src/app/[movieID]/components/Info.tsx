@@ -6,7 +6,7 @@ type InfoProps = {
 
 export default function Info({movie}:InfoProps){
     return (
-        <div className="text-white h-content text-sm sm:text-base lg:max-w-[50vw]">
+        <section className="text-white h-content text-sm sm:text-base lg:max-w-[50vw]">
             <h1 className="mb-4 text-xl font-semibold text-center lg:text-start sm:text-2xl line-clamp-3">
               {movie.title}
             </h1>
@@ -33,6 +33,6 @@ export default function Info({movie}:InfoProps){
               </p>
             </div>
             <p className="font-thin">{movie.overview}</p>
-          </div>
+          </section>
     )
 }

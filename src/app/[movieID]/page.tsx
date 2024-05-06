@@ -10,7 +10,7 @@ export default async function Home({
 
   return (
     <Providers>
-        <MovieDetails movieID={params.movieID}></MovieDetails>
+        <MovieDetails movieID={params.movieID}/>
     </Providers>
   );
 }
