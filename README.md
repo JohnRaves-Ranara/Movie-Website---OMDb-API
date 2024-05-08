@@ -7,6 +7,8 @@ This project is a movie website that fetches movies from the TMDb API. It allows
 3. Usage
 4. Tech Stack
 
+comment
+
 ## Introduction
 This project is a movie website built using Next.js, React Query, Axios, and Shadcn. It leverages the TMDb API to fetch high quality movie data and provides users with a seamless browsing experience.
 
